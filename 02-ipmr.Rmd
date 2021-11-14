@@ -1,0 +1,3 @@
+# ipmr: an R package to flexibly implement Integral Projection Models
+
+blah blah blah

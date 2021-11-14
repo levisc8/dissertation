@@ -1,0 +1,7 @@
+--- 
+title: "Advancing Integral Projection Models with New Computational Tools and Sources of Data" 
+author: ""
+output: bookdown::pdf_book
+link-citations: yes
+github-repo: levisc8/dissertation
+---
