@@ -4,4 +4,12 @@ author: ""
 output: bookdown::pdf_book
 link-citations: yes
 github-repo: levisc8/dissertation
+header-includes:
+  - \usepackage{pdflscape}
+  - \newcommand{\blandscape}{\begin{landscape}}
+  - \newcommand{\elandscape}{\end{landscape}}
+  - \usepackage{caption}
+  - \captionsetup[figure]{labelformat=empty}
+  - \captionsetup[table]{labelformat=empty}
+
 ---
