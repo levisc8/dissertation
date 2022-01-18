@@ -1,0 +1,38 @@
+\newpage
+
+# Summary 
+
+The study of structured populations and their dynamics has become a key aspect of many sub-disciplines within ecology as a whole. Currently, matrix population models (MPMs) are the most widely used structured population models. Integral projection models (IPMs) are more new, but are rising in popularity. A variety of tools and techniques to parameterize and implement IPMs have been concurrently created. However, pressing questions in ecology, evolution, and conservation, and their associated data and computational requirements, have outpaced the development of tooling to aid their implementation, interpretation, and synthesis. This dissertation aims to partially fill this gap by introducing new computational tools and data collection techniques.These tools and techniques enable large scale data collection, ease the implementation of complex IPMs, and provide a more streamlined experience for syntheses.
+
+In **Chapter 2**, I introduce a new _R_ package, `ipmr`, to implement and analyse IPMs. This _R_ package provides a domain specific language to implement deterministic and stochastic models, with two options for handling the latter. Furthermore, it handles density dependence with minimal additional overhead. It is designed to accommodate almost any type of regression model used in the vital rate fitting process, and also includes methods for extracting the basic building blocks used in many downstream analyses. This chapter includes two appendices with detailed case studies demonstrating the package's use, and the package itself contains six vignettes that are intended for audiences from a range of technical backgrounds. 
+
+In **Chapter 3**, I introduce two additional tools: the PADRINO IPM Database, and `Rpadrino`, an _R_ package for interfacing with PADRINO. PADRINO houses IPMs extracted from published peer-reviewed studies, as well as extensive metadata that enables researchers to filter the database down to models that fit their research questions. `Rpadrino` provides a clean interface to rebuild these models from _R_ using the `ipmr` _R_ package as a backend. This chapter also includes two detailed case studies on how to use these tools for both standalone analyses and in conjunction with other databases to power much larger scale syntheses.
+
+In **Chapter 4**, I examine the mechanisms underlying invasions by the _Carpobrotus_ genus using data collected by drones on four continents. We show that native status and genetic composition matter MORE/LESS/EQUALLY 0 than climate in driving the success of this widely invasive genus. Furthermore, this chapter demonstrates the utility of new demographic data collection methods for at least some environmental contexts. 
+
+# Chapter 1: Introduction
+
+### Integral projection models: past and present
+
+There is a rich history of dividing populations into sub-groups to better understand how variation within a population affects the past, present, and future of the population as a whole. Generally, Alfred Lotka's work in the early 1900s to understand age-specific rates of birth and death is recognized as the beginning of this field of study (though work going as far back as the late 1600s by John Graunt and Edmund Halley do contain elements of this underlying idea). However, this approach did not become popular in ecology for some time, likely due to the tedious nature of the calculations (Ebert 1999). P.H. Leslie introduced the age structured projection matrix in 1945. This approach provided a more elegant way of summarizing vital rates, though still required dutiful attention to detail when performing the calculations by hand. Extensions of Leslie's age-based approach to incorporate stage-structured populations (Lefkovitch 1965) and multiple structuring variables (Goodman 1969) advanced theory, but did not necessarily drive broader uptake. The advent of personal computers and the recognition that numerical analysis methods fit well with this rapidly growing technology lead to a rapid adoption in the late 1970s and early 1980s. Concurrently, Hal Caswell and colleagues' showed how to calculate on sensitivity (1978) and elasticity (1986) of population growth rates, which are still a vital analytical tool for applied practitioners and theoreticians. A subsequent text book provided computer code to implement these analyses, along with many others, helped move these approaches from the esoteric to the practical (Caswell 1989).
+
+Somewhere along the way, researchers realized they may not be able to sub-divide all populations neatly. Many species have their life cycle structured by some continuous trait, like weight, height, diameter, or hatching date. The integral projection model (IPM) was proposed to alleviate this issue (Easterling et al. 2000). IPM theory provides a framework to model the dynamics of populations structured by any number of continuous and discrete traits (Ellner & Rees 2006, Ellner et al. 2016).
+
+### Citations
+
+1. Caswell, H. (1978). A general formula for the sensitivity of population growth rate to changes in life history parameters. Theoretical Population Biology 14(2): 215-230. https://www.jstor.org/stable/2528566
+
+5. Easterling, M.R., Ellner, S.P., & Dixon, P.M. (2000). Size-specific sensitivity: Applying a new structured population model. Ecology 81(3): 694-708. https://doi.org/10.1890/0012-9658(2000)081[0694:SSSAAN]2.0.CO;2
+
+2. Ebert, T.A. (1999). Plant and Animal Populations: Methods in Demography. Academic Press, San Diego, California.
+
+6. Ellner, S.P. & Rees, M. (2006) General IPMs
+
+7. Ellner, S.P., Childs, D.Z., & Rees, M. (2016) Data driven modelling of structured populations: a practical guide to the Integral Projection Model. Springer, Switzerland.
+
+4. de Kroon, H., Plaisier A., van Groenendael, J., & Caswell, H. (1986). Elasticity: the relative contribution of demographic parameters to population growth rate. Ecology 67(5): 1427-1431. https://doi.org/10.2307/1938700.
+
+3. Lefkovitch, L.P. (1965). The study of population growth in organisms grouped by stages. Biometrics 21(1): 1-18. https://www.jstor.org/stable/2528348
+
+
+

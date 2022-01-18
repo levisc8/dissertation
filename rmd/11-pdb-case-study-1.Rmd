@@ -1,10 +1,12 @@
+\newpage
+
 # Appendix 4: PADRINO Case Study 1
 
-## PADRINO and Rpadrino
+### PADRINO and Rpadrino
 
 We have created _Rpadrino_ to streamline the process of interacting with PADRINO from _R_. The goal of _Rpadrino_ is data management and model construction - not necessarily to do analyses for you. Thus, there is still some minimum amount of programming knowledge required to use it. It will also be helpful to understand how _ipmr_, the engine that powers model reconstruction, creates model objects and the things that it returns. _ipmr_ is extensively documented [here](https://levisc8.github.io/ipmr/), and reading at least the introduction to that will certainly help understand the code that follows here. Eventually, we plan to create the _ipmtools_ package, which will house functions designed to work with the IPMs stored in PADRINO to conduct more extensive analyses (_e.g._ perturbations, LTREs, life history traits).
 
-## Usage
+### Usage
 
 This case study makes use of _dplyr_ to help with data transformation. If you do not already have it, install it (and _Rpadrino_) with:
 
@@ -22,7 +24,7 @@ Finally, we will compute mean size at death ($\bar\omega(z_0) = (\textbf{i}\ \ci
 
 >NB: The above formulae are from Ellner, Childs, & Rees (2016), Table 3.3. Their derivations are described in detail in Chapter 3 of the book.
 
-## Subsetting using Metadata and other tables
+### Subsetting using Metadata and other tables
 
 We can find simple IPMs in PADRINO using a combination of _dplyr_ (Wickham et al. 2021) and _Rpadrino_ code. _Rpadrino_ provides the `pdb_subset()` function. `pdb_subset()` currently only takes `ipm_id`s that we want to keep. The functionality will get expanded, but it's surprisingly complicated to manage that in a user-friendly interface (see the [PADRINO explorer app](https://sam-levin.shinyapps.io/shiny_pdb/) for additional help). This means that we have to work out which `ipm_id`s correspond to the models we want, and then pass those to `pdb_subset()`. 
 
@@ -101,7 +103,7 @@ my_pdb <- pdb_subset(det_pdb, keep_ind)
 
 ```
 
-## Re-building IPMs
+### Re-building IPMs
 
 Now that we have our data subsetted, we can start making IPMs. The first step is always to create `proto_ipm` objects. These are an intermediate step between the database and a set of usable kernels. Because _ipmr_ also uses these as an intermediate step, we can combine models from PADRINO with ones that we create ourselves. There is an example of this in the second case study. 
 
@@ -215,7 +217,7 @@ new_ipms <- new_ipms[keep_ind]
 
 ```
 
-## Further analyses
+### Further analyses
 
 _Rpadrino_ contains methods for most of _ipmr_'s analysis functions. These include (but are not limited to!) `lambda`, `left_ev`, and `right_ev`. We need all three of these to compute sensitivity and elasticity. We also need the binwidth of the integration mesh so we can perform integrations. _Rpadrino_'s has the `int_mesh()` function for that, and the binwidth is always the first element in the list that it returns. We can extract them like so:
 
@@ -376,7 +378,7 @@ for(i in seq_along(r_bars)) {
 
 ```
 
-## Troubleshooting and Modifying IPMs
+### Troubleshooting and Modifying IPMs
 
 The plot of the output above provides a cautionary tale: $\bar r(z_0)$ is negative in model `aaa341`! This is not biologically possible - we can not make negative recruits. We know there is some quirk in that model that produces these results. PADRINO would flag a model with negative numbers in the $F$ kernel when it's built, so we need to check the $N$ kernel for that model for negative values.
 
@@ -444,7 +446,7 @@ new_ipms$aaa341 <- new_lonicera$aaa341
 
 That looks a bit closer to reality!
 
-## Vital rate and parameter level analyses
+### Vital rate and parameter level analyses
 
 We can also run analyses at the parameter and the vital rate level for PADRINO. These require more care - it is strongly recommended to check the original publications to for the meaning of each parameter and vital rate. There is simply too much variability in the way vital rates and parameters are estimated in the literature to provide systematic descriptions of them in PADRINO. With this caveat in mind, we will proceed to a couple examples of using vital rate functions and parameters in further analyses.
 
@@ -632,7 +634,7 @@ plot(y = sens_s_w, x = mesh_ps,
 
 ```
 
-## Mean size at death and size at death kernels
+### Mean size at death and size at death kernels
 
 We can also use vital rate function values in conjunction with sub-kernels to implement calculations of life history traits. For this example, we will examine mean size at death and the size at death kernel. These are given by the following equations:
 
@@ -785,7 +787,7 @@ for(i in seq_along(omega_bar_z)) {
 
 This is an interesting variety of relationships! Sometimes, it increases linearly, whereas other times we get a parabolic relationships. This is a good first pass on an analysis, though subsequent digging would likely reveal quirks in some of these models that we'd need to address more thoroughly. After these exercises, you should have the tools to do just that!
 
-## Recap
+### Recap
 
 We first showed how to subset PADRINO using the Metadata table, as well as a few others. Next, we demonstrated how to rebuild kernels from the database, as well as basic analyses such as deterministic population growth rates and perturbations. Next we moved into some examples of life cycle properties, such as recruit production and size at death. Along the way, we encountered some issues with data that required us to manipulate the underlying `proto_ipm`s. This is far from an exhaustive display of potential analyses. However, this case study should serve as a guide for posing questions and solving issues with PADRINO.
 

@@ -1,0 +1,42 @@
+\pagenumbering{gobble}
+
+\bcenter
+
+# Advancing Integral Projection Models with New Computational Tools and Sources of Data
+
+Dissertation zur Erlangung des Doktorgrades der
+Naturwissenschaften (Dr. rer. nat.)
+
+der
+
+Naturwissenschaftlichen Fakultät I – Biowissenschaften –
+
+der Martin-Luther-Universität Halle-Wittenberg,
+
+Vorgelegt von
+
+Herr Sam C. Levin, M.Sc.
+
+geboren am 23.01.1990 in Philadelphia, PA, USA
+
+\ecenter
+
+Gutachter
+
+1. Professor Tiffany Knight (Martin Luther University Halle-Wittenberg, Helmholtz Center for Environmental Research, German Centre for Integrative Biodiversity)
+
+2. 
+                    
+3.              
+
+Datum der Verteidigung: `r format(Sys.Date(), '%d.%m.%Y')`
+
+
+\newpage
+\pagenumbering{arabic}
+
+```{=latex}
+
+\tableofcontents
+
+```

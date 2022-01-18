@@ -1,0 +1,3 @@
+# Appendix 2: `ipmr` Case Study 2
+
+\includepdf[pages = -, nup = 1, pagecommand = {}]{rmd/published/ipmr-s2.pdf}

@@ -1,6 +1,8 @@
+\newpage
+
 # Appendix 5: PADRINO Case Study 2
 
-## Overview 
+### Overview 
 
 In this case study, we demonstrate how PADRINO can be used in conjunction with (1) your own unpublished data, and (2) external data repositories. 
 
@@ -8,7 +10,7 @@ In many cases, we may wish to combine data that we’ve collected and not yet pu
 
 Using PADRINO in conjunction with external data sources presents unique opportunities to address synthetic questions in ecology, evolutionary biology, and conservation. External data sources could (though are not limited to) include climate data, species range distributions, phylogenies, or life tables. We describe how to use PADRINO in conjunction with BIEN in Section 2 of this case study.
 
-## Combining your own data with PADRINO
+### Combining your own data with PADRINO
 
 In this section, we demonstrate how to combine data from PADRINO with a users own unpublished data. The first part of the code generates two IPMs - these are our “unpublished IPMs”. The next section shows how to combine our unpublished IPMs with those stored in PADRINO, and how to perform simple analyses (i.e. calculate population growth rate) across the combined set of IPMs.
 
@@ -238,7 +240,7 @@ lambdas    <- lambda(ipm_list)
 
 We could now proceed with any further analyses just as we did in the case study 1. Since those types of analyses are already covered by the previous case study, we will move on to combining PADRINO data with information from other databases.
 
-## Extending analyses with other databases
+### Extending analyses with other databases
 
 Here, we show how to combine data from PADRINO with data from other external sources. Specifically, we show how to combine with data from [COMPADRE MPM database](https://compadre-db.org/) and [BIEN](https://bien.nceas.ucsb.edu/bien/) , a database containing the spatial distribution and phylogenies of many plant species. We then demonstrate how we can use these combined datasets to address the question: “How do population growth rates vary by the distance of the studied population from the known range edge of that species?"
 
@@ -650,6 +652,6 @@ ggplot(all_data, aes(x = distance_in_km, y = lambda)) +
 
 There is a positive trend in range centrality and species performance (red line), and the GAM is likely overfit (blue line). There is a lot of residual variance, and we can certainly find better ways to model this phenomenon, but this is a good start for an exploratory analysis. We will leave the further analyses as an exercise to you! 
 
-## Recap
+### Recap
 
 We have shown how to combine PADRINO data with user-defined IPMs as well as join it with information from other databases. This is hardly a comprehensive overview of PADRINO's applications - there are many other uses and databases one could combine PADRINO with. It is our hope that this and the previous case study provide a general guide to the considerations and steps one needs to take when using this data!

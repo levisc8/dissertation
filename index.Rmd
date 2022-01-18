@@ -1,7 +1,10 @@
 --- 
-title: "Advancing Integral Projection Models with New Computational Tools and Sources of Data" 
-author: ""
-output: bookdown::pdf_book
+title:  ""
+author: "Sam C. Levin"
+output: 
+  bookdown::pdf_book:
+    toc: false
+    number_section: false
 link-citations: yes
 github-repo: levisc8/dissertation
 header-includes:
@@ -11,5 +14,10 @@ header-includes:
   - \usepackage{caption}
   - \captionsetup[figure]{labelformat=empty}
   - \captionsetup[table]{labelformat=empty}
-
+  - \usepackage{pdfpages}
+  - \newcommand{\bcenter}{\begin{center}}
+  - \newcommand{\ecenter}{\end{center}}
+  - \usepackage{hyperref}
+  - \hypersetup{colorlinks = true, linkcolor = black, urlcolor = blue}
+  - \setcounter{tocdepth}{2}
 ---

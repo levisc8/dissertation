@@ -1,0 +1,4 @@
+\newpage
+# Chapter 2: Flexible implementation of Integral Projection Models in R
+
+\includepdf[pages = -, nup = 1, pagecommand = {}]{rmd/published/ipmr.pdf}
