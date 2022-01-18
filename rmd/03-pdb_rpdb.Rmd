@@ -1,3 +1,0 @@
-# Chapter 2: PADRINO and Rpadrino: a toolkit for rebuilding and analyzing published Integral Projection Models
-
-Blah blah blah
