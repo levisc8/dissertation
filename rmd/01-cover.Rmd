@@ -2,7 +2,7 @@
 
 \bcenter
 
-# Advancing Integral Projection Models with New Computational Tools and Sources of Data
+# Integral Projection Models Across Spatial Scales
 
 Dissertation zur Erlangung des Doktorgrades der
 Naturwissenschaften (Dr. rer. nat.)

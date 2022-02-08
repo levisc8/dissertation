@@ -14,7 +14,7 @@ In **Chapter 4**, I examine the mechanisms underlying invasions by the _Carpobro
 
 ### Population models in ecology
 
-Understanding population dynamics is central to ecology (Crone et al. 2011), evolution (Metcalf & Pavard 2007), and conservation (Morris & Doak 2002). Survival and reproduction rates form the two main fitness components that drive evolution, and determine the fate of populations as a whole. These vital rates are therefore crucial to understanding numerous other phenomena. Indeed, the utility of this idea - that population fates are determined by rates of birth and death - has been demonstrated numerous times over the years. Notable applications include (though are certainly not limited to) understanding predator-prey interactions (Lotka 1925, Volterra 1926), the consequences of age/stage/size structure in populations (Leslie 1945, Lefkovitch 1965), invasive and endangered species management (Caswell 1978, Caswell et al. 1986, Morris & Doak 2002),  and the consequences of climate change (Teller et al. 2016, Compagnoni et al. 2021). 
+Understanding population dynamics is central to ecology (Crone et al. 2011), evolution (Metcalf & Pavard 2007), and conservation (Morris & Doak 2002). Survival and reproduction rates form the two main fitness components that drive evolution, and determine the fate of populations as a whole. These vital rates are therefore crucial to understanding numerous other phenomena. Indeed, the utility of this idea - that population fates are determined by rates of birth and death - has been demonstrated numerous times over the years. Notable applications include (though are certainly not limited to) understanding predator-prey interactions (Lotka 1925, Volterra 1926), the consequences of age/stage/size structure in populations (Leslie 1945, Lefkovitch 1965), invasive and endangered species management (Caswell 1978, de Kroon et al. 1986, Morris & Doak 2002),  and the consequences of climate change (Teller et al. 2016, Compagnoni et al. 2021). 
 
 Early applications of population biology focused on human populations and modeled total population size (rather than, for example, number of age $a$ individuals). These yielded insight into drivers of exponential population growth (and an unhealthy dose of nativist and racist sentiment, Franklin 1751, Malthus 1798). They gave the classic equation: 
 
@@ -34,7 +34,7 @@ $N(a, t+1) = AN(a,t). \tag{1.1.3}$
 
 $N(a, t)$ and $N(a, t+1)$ represent the population age distribution at time $t$ and $t+1$, and $A$ is an $a \times a$ matrix with age-specific survival and fertility rates. Extensions of Leslie's age-based approach to incorporate stage-structured populations (Lefkovitch 1965) and multiple structuring variables (Goodman 1969) advanced theory, but did not necessarily drive broader uptake. The advent of personal computers and the recognition that numerical analysis methods fit well with this rapidly growing technology lead to a rapid adoption in the late 1970s and early 1980s. Concurrently, Hal Caswell and colleagues' showed how to calculate on sensitivity (1978) and elasticity (1986) of population growth rates, which are still a vital analytical tool for applied practitioners and theoreticians. A subsequent text book provided computer code to implement these analyses, along with many others, helped make these approaches more accessible (Caswell 1989).
 
-In the intervening years, further developments have enabled researchers to accommodate additional biological realism into their structured population models (e.g. density dependence (Leslie 1959, Liu & Cohen 1987, Jensen 1995), environmental stochasticity (Caswell 1989)). However, there was also a recognition that many species have their life cycle structured by some continuous trait, like weight, height, diameter, or hatching date. Furthermore, chopping these continuous traits up into discrete categories introduced increased data requirements for parameterization and/or reduced the biological realism of the model by treating all individuals in a given class as identical (Vandermeer 1978). The integral projection model (IPM) was proposed to alleviate this issue (Easterling et al. 2000). IPM theory provides a framework to model the dynamics of populations structured by any number of continuous and discrete traits (Ellner & Rees 2006, Ellner et al. 2016). Further development of IPM theory has yielded methods for including a variety of additional factors, including density dependence (Rose et al. 2005, Adler et al. 2010), environmental stochasticity (Childs et al. 2004, Rees & Ellner 2009), spatial structure (Jongejans et al. 2011), and demographic stochasticity (Vindenes et al. 2011). These developments have enabled analyses across a variety of fields, including evolution (e.g. Coulson et al. 2011), conservation biology (e.g. XXXX), and global change biology (e.g. Nicole et al. 2011, Simmonds et al. 2020). 
+In the intervening years, further developments have enabled researchers to accommodate additional biological realism into their structured population models (e.g. density dependence (Leslie 1959, Liu & Cohen 1987, Jensen 1995), environmental stochasticity (Caswell 1989)). However, there was also a recognition that many species have their life cycle structured by some continuous trait, like weight, height, diameter, or hatching date. Furthermore, chopping these continuous traits up into discrete categories introduced increased data requirements for parameterization and/or reduced the biological realism of the model by treating all individuals in a given class as identical (Vandermeer 1978). The integral projection model (IPM) was proposed to alleviate this issue (Easterling et al. 2000). IPM theory provides a framework to model the dynamics of populations structured by any number of continuous and discrete traits (Ellner & Rees 2006, Ellner et al. 2016). Further development of IPM theory has yielded methods for including a variety of additional factors, including density dependence (Rose et al. 2005, Adler et al. 2010), environmental stochasticity (Childs et al. 2004, Rees & Ellner 2009), spatial structure (Jongejans et al. 2011), and demographic stochasticity (Vindenes et al. 2011). These developments have enabled analyses across a variety of fields, including evolution (e.g. Coulson et al. 2011), conservation biology (e.g. Ferrer-Cervantes et al. 2012), and global change biology (e.g. Nicole et al. 2011, Simmonds et al. 2020). 
 
 The main strengths of IPMs lie in i) the ability to choose continuous traits to model populations, ii) the ability to flexibly incorporate discrete and continuous traits into the same model, iii) efficient parameterization of the model using regression-based toolkits, and iv) numerical computation of the integrals (see $1.2$) mean tools available for matrix models are usually available for IPMs. Thus, there is a rich array of life cycles one can model, with a variety of well understood tools for fitting functional forms to real data, and a broad repertoire of tools and frameworks to analyze the resulting IPM with.
 
@@ -50,28 +50,34 @@ To aid interpretability, the kernel $K(z',z)$ is usually decomposed into _sub-ke
 
 $K(z',z) = P(z', z) + F(z', z) + C(z',z). \tag{1.2.2}$
 
-$P(z',z)$ describes transitions of existing individuals due to survival and change in trait value. $F(z',z)$ describes per-capita sexual reproduction contributions. $C(z',z)$ describes per-capita asexual reproduction contributions. These sub-kernels are in turn comprised of vital rate functions. It is at this step that IPMs link the researcher's data to the population dynamics. For most IPMs, these vital rate functions are generated via regression models fit to real data collected in the field or in the lab (or some combination thereof). 
+$P(z',z)$ describes transitions of existing individuals due to survival and change in trait value. $F(z',z)$ describes per-capita sexual reproduction contributions. $C(z',z)$ describes per-capita asexual reproduction contributions. IPM theory assumes these sub-kernels are somewhat smooth functions, with piecewise continuity satisfying this assumption (Ellner et al. 2016, Ch 2.2). In other words,
+
+$\begin{cases} F(z',z) = 0 & z \lt X \\ F(z',z) = f(z) & z \geq X, \end{cases}  \tag{1.2.3}$
+
+is valid for the $F(z',z)$ sub-kernel, where $X$ represents some threshold trait value for reproducing, and $f(z)$ is a function or set of functions (see next paragraph) giving the expected per-capita contributions to new recruits.
+
+The $P(z',z)$, $F(z',z)$, and $C(z',z)$ sub-kernels are in turn comprised of vital rate functions. It is at this step that IPMs link the researcher's data to the population dynamics. For most IPMs, these vital rate functions are generated via regression models fit to real data collected in the field or in the lab (or some combination thereof). 
 
 For example, the $P(z',z)$ kernel from Bogdan et al. (2021) for _Carpobrotus spp._ contains two vital rate functions: 
-$P(z',z) = s(z) G(z',z). \tag{1.2.3}$
+$P(z',z) = s(z) G(z',z). \tag{1.2.4}$
 
 $s(z)$ was parameterized using a logistic regression of survival outcome (either 0 (dead) or 1 (alive)) at $t+1$ on plant size $z$. $G(z',z)$ was parameterized using a linear regression of size $z'$ on size $z$. This resulted in:
 
-$Logit(s(z)) = \beta_{0,s} + \beta_{1,s} * z, \tag{1.2.4}$
+$Logit(s(z)) = \beta_{0,s} + \beta_{1,s} * z, \tag{1.2.5}$
 
-$G(z',z) = f_G(z' | \mu_G(z), \sigma_G), \tag{1.2.5}$
+$G(z',z) = f_G(z' | \mu_G(z), \sigma_G), \tag{1.2.6}$
 
-$\mu_G(z) = \beta_{0,G} + \beta_{1,G} * z. \tag{1.2.6}$
+$\mu_G(z) = \beta_{0,G} + \beta_{1,G} * z. \tag{1.2.7}$
 
-$\beta_{0,i}$ and $\beta_{1,i}$ are intercepts and slopes from each regression, respectively, and  $f_G$ in $1.2.5$ denotes a Gaussian probability density function. $\sigma_G$ is the standard deviation of the residuals from the growth regression. 
+$\beta_{0,i}$ and $\beta_{1,i}$ are intercepts and slopes from each regression, respectively, and  $f_G$ in $1.2.6$ denotes a Gaussian probability density function. $\sigma_G$ is the standard deviation of the residuals from the growth regression. 
 
 The integrals are usually impossible to solve analytically (Ellner & Rees 2006), so numerical solutions approximations are computed instead. The midpoint rule is the most commonly used one (others are possible, see Ellner et al. 2016, Chapter 6). This divides the domain $[L,U]$ into $m$ artificial bins centered at $z_i$ with a width of $h = (U - L)/m$, and midpoints $z_i = L + (i - 0.5)*h$ for $i = 1, 2, \dots, m$. The midpoint rule approximation of $1.2.1$ becomes:
 
-$n(z_j, t+1) = h \sum\limits_{i=1}^m K(z_j, z_i)n(z_i,t). \tag{1.2.7}$
+$n(z_j, t+1) = h \sum\limits_{i=1}^m K(z_j, z_i)n(z_i,t). \tag{1.2.8}$
 
 This creates a discretized projection matrix $K$ analogous to $A$ in $1.1.3$. Matrix multiplication of the discretized kernel and the discretized trait distribution generates a new trait distribution. 
 
-Because of the smiliarity between $K(z_j, z_i)$ in $1.2.7$ and $A$ in $1.1.3$, many of the tools developed for matrix models can be applied to IPMs with little to no additional effort. These include (but are not limited to!) per-capita growth rates ($\lambda$), stable trait distributions, reproductive values, sensitivity and elasticity analysis. Statistical and mathematical methods for incorporating environmental stochasticity (Rees & Ellner 2009) and density dependence (Rose et al. 2005, Adler et al. 2010) available. Furthermore, there are guides available for assistance with the former (Metcalf et al. 2015).
+Because of the smiliarity between $K(z_j, z_i)$ in $1.2.8$ and $A$ in $1.1.3$, many of the tools developed for matrix models can be applied to IPMs with little to no additional effort. These include (but are not limited to!) per-capita growth rates ($\lambda$), stable trait distributions, reproductive values, sensitivity and elasticity analysis. Statistical and mathematical methods for incorporating environmental stochasticity (Rees & Ellner 2009) and density dependence (Rose et al. 2005, Adler et al. 2010) available. Furthermore, there are guides available for assistance with the former (Metcalf et al. 2015).
 
 Simple IPMs have been developed for a wide array of applications, ranging from the theoretical to the practical. For example, Metcalf and colleagues (2009) combined simple IPMs for 6 tropical tree species with a discretely varying light environment to model life expectancy, age specific mortality, and passage times to a given size conditional on initial state. Bassar and colleagues (2016) developed a simple, density dependent IPM to show how asymmetric competition affects various life histroy traits of _Poecilia reticulata_). Nicole and colleagues (2011) examined how climate change and local habitat conditions would influence the viability of the endangered _Dracocephalum austriacum_. I developed a simple, density-independent IPM for _Lonicera maackii_ to show that the degree of competitive release was a function of phylogenetic and functional novelty in its new local community (Levin et al. 2019, Levin et al. 2020). Zucaratto and colleagues (2020) developed a simple IPM for the invasive _Roystonea oleracea_ to develop a management plan for preserving Ilha Grande, an island off the coast of Brazil whose Atlantic Forest habitat is threatened. Despite the wide application of simple IPMs, there is a need to model life cycles and species that aren't readily summarized by a single, continuous trait. To that end, Ellner & Rees (2006) developed the general IPM, which is covered in the next section.
 
@@ -83,13 +89,18 @@ The trait space in a general IPM is no longer one dimensional. We represent the 
 
 1. Discrete to discrete transitions: $K_{ij}$ is a single number. This includes, for example, the fraction of seeds in a seedbank that do not germinate and survives to remain in the seedbank the following year, or, when insect eggs remain in stasis across time steps, neither hatching nor dying. 
 
-2. Discrete to continuous: $K_{ij} = k_{ij}(z')$. $k_{ij}(z')$ is a state distribution that gives the probability of trait value $z'$ at $t+1$, and is the same for all individuals in $Z_j$. This includes, for example, the size distribution of seedlings emerging from the seedbank, or the size of newly hatched insects. 
+2. Discrete to continuous transitions: $K_{ij} = k_{ij}(z')$. $k_{ij}(z_i')$ is a state distribution that gives the probability of trait value $z'$ at $t+1$, and is the same for all individuals in $Z_j$. This includes, for example, the size distribution of seedlings emerging from the seedbank, or the size of newly hatched insects. 
 
-3. 
+3. Continuous to discrete transitions: $K_{ij} = k_{ij}(z)$. $k_{ij}(z_j)$ is the state dependent per-capita contribution to state $i$ at $t+1$ from state $j$ at time $t$. This includes, for example, the number of seeds that a size $z_j$ plant produces that do not immediately germinate and enter the seedbank, or the number of insect eggs that a size $z_j$ adult produces that do not hatch immediately. 
+
+4. Continuous to continuous transitions: $K_{ij} = K_{ij}(z_i', z_j)$. These are bivariate kernels functions like the ones introduced above in the simple IPM section. These include, for example, survival/growth and fecundity kernels of existing plants, or survival/growth kernels of adult insects structured by body length. It is worth noting that $i$ and $j$ don't need to be the same trait here. For example, trees may have a continuously structured seedling stage where seedlings are structured by height, and a continuously structured adult stage where adults are structured by diameter at breast height (DBH). In this case, seedlings may start a transition with height $z_j$ at $t$ and become adults with DBH $z_i'$ at $t+1$.
+
+There are two assumptions made by the general model: i) there are a finite number of domains, and ii) all of the continuous domains are bounded. The first assumption is not overly restrictive, because states like ontogeny only have a few different values they can take on. Age is bounded by the maximum lifespan of the species, which need not depend on rate of senescence (which some species do escape) but on the maximum observed age in the data used to parameterize the model (everything does die eventually. Nature is cruel, and things get eaten). The second assumption is not restrictive unless the state in question is spatial location. Most species have a maximum size they can grow to (or, at least, a maximum size they regularly attain before something else kills them), and so imposing a closed domain on the model will not create unrealistic populations (Ellner, Childs & Rees 2016, Ch 6.3).  
+
+General IPMs unlock an even broader range of applications, some going beyond traditional ecological questions. For example, IPMs have been embedded into the SIR epidemiological model to estimate onward transmission probability of malaria parasites based on within-host parasite load dynamics (Metcalf et al. 2015). Stepping back into the realm of traditional ecology, Bruno et al. (2011) used a general IPM to model population dynamics of corals infected with a fungal pathogen. Invasion biology has also benefited from general IPMs, with a multitude of publications addressing mechanisms underlying them (e.g. Crandall & Knight 2017, Levin et al. 2020), rate of spread (e.g. Jongejans et al. 2011), probability of invasion given future climate (e.g. Merow et al. 2017), and potential control pathways (e.g. Erickson et al. 2017, Lommen et al. 2018).
 
 #### Survey papers
 
-Bruno et al. 2011, Metcalf 2016 J Animal Ecol infectious IPMS
 
 Levin et al. 2019, Crandall & Knight 2017, Erickson et al. 2017 Invasive species
 
@@ -97,61 +108,128 @@ Childs (a gazillion), Coulson (2011) Eco-evo
 
 Simmonds et al. 2020, Climate change/multispecies interactions 
 
-### Survey of Available Tools
+### Survey of available tools for IPM implementation
 
 In parallel with developments in IPM theory, researchers have produced tools to assist with their implementation. For example, there are numerous "how-to" guides covering implementation of environmental variation (Metcalf et al. 2015), a practical guide for conservation biologists (Merow et al. 2013), and at least two _R_ packages to assist with creating some types of IPMs (Metcalf et al. 2013, Shefferson et al. 2021). Additionally, a book published by Ellner, Childs & Rees (2016) contains in-depth examinations of the theory underlying various IPM applications, and provides free _R_ code demonstrating how to implement these with real data. 
 
 Additionally, at least two _R_ packages exist to help with fitting and implementing IPMs. `IPMPack` assists with both vital rate regression modelling and IPM implementation (Metcalf et al. 2013). It can handle a variety of IPM types, including simple IPMs, a subset of general IPMs, and includes functionality for specifying stochastic variation and conducting a variety of analyses, including life table response experiments, computing life expectancies, passage times, population growth rates, and perturbation based analyses. Furthermore, it contains excellent diagnostic tools to help users understand how their model is performing, and whether it may contain common flaws (e.g. lots of eviction, unrealistic size ranges, etc).  `lefko3` is an _R_ package in a similar vein to `IPMPack`, and is designed to help with analyses that incorporate an individual's history into the future state (i.e. $n(z, t +1) = f(n(z,t), n(z, t-1))$, Shefferson et al. 2021). It is more general than `IPMPack` in that it can handle a greater range of data non-independence (i.e. with mixed effects models) and a greater range of distributions for $z$. Both packages require a fixed set of vital rate functional forms, and rely on other _R_ packages, such as `nlme`, `lme4`, `VGAM`, and `glmmTMB`. This introduces a tradeoff between perceived ease of use on the one hand, and flexibility in modeling single vital rates (and by extension, the life cycle as a whole) on the other hand. The latter tradeoff represents a substantial gap in the available tooling at our disposal, because pressing research questions demand IPMs of increasing complexity and nuance. 
 
-Much of this complexity arises from the need to faithfully represent vital rates and their dependence not just on the trait (or traits) in the IPM, but external environmental factors. These external factors can include (but are not limited to!) other species or changing climate conditions. Furthermore, the responses need not be linear (in fact, they often may not be). These issues are actually a subset of general regression modelling problems, and the field of computational statistics is constantly developing new tools to handle them. For example, `mgcv` implements generalized additive models to handle estimation of semi-parametric smooth functions using maximum likelihood (Wood 2017). `lme4` similarly uses maximum likelihood to estimate linear mixed models to handle non-independence in the underlying data (e.g. from spatial clustering, phylogenetic structure, or nested experimental design, Bates et al. 2015). `brms` has become a popular interface to the `stan` library for estimating Bayesian models with MCMC algorithms (Buerkner 2018, Stan Development Team 2020). `brms` is particularly popular because of it provides a familiar _R_ formula interface and allows users to specify nearly any type of model, linear or non-linear, that they desire. It also leverages `mgcv`'s basis creating functions to estimate GAMs in a fully Bayesian framework. Their is an astounding array of additional tools researchers may use to estimate trait-demography relationships, and this is only a brief overview. However, it is somewhat frustrating for many researchers we do not have a framework that allow us to harness the full breadth of these tools in an IPM context without writing all analysis code from scratch. 
+Much of this complexity arises from the need to faithfully represent vital rates and their dependence not just on the trait (or traits) in the IPM, but external environmental factors. These external factors can include (but are not limited to!) other species or changing climate conditions. Furthermore, the responses need not be linear (in fact, they often may not be). These issues are actually a subset of general regression modelling problems, and the field of computational statistics is constantly developing new tools to handle them. For example, `mgcv` implements generalized additive models to handle estimation of semi-parametric smooth functions using maximum likelihood (Wood 2017). `lme4` similarly uses maximum likelihood to estimate linear mixed models to handle non-independence in the underlying data (e.g. from spatial clustering, phylogenetic structure, or nested experimental design, Bates et al. 2015). `brms` has become a popular interface to the `stan` library for estimating Bayesian models with MCMC algorithms (Buerkner 2018, Stan Development Team 2020). `brms` is particularly popular because of it provides a familiar _R_ formula interface and allows users to specify nearly any type of model, linear or non-linear, that they desire. It also leverages `mgcv`'s basis creating functions to estimate GAMs in a fully Bayesian framework. There is an astounding array of additional tools researchers may use to estimate trait-demography relationships, and this is only a brief overview. However, it is somewhat frustrating for many researchers we do not have a framework that allow us to harness the full breadth of these tools in an IPM context without writing all analysis code from scratch. 
 
-### Survey of Databases for Modeling Structured Populations
+### Demographic data for broader syntheses
 
-PADRINO overview, use COMPADRE, DatLIFE, etc. 
+Given the age and maturity of the study of structured populations, it seems natural that at least a subset of researchers would be interested in compiling databases of published literature for synthesis applications. *COMPADRE* (Salguero-Gomez et al. 2014), *COMADRE* (Salguero-Gomez et al. 2015), and *DatLIFE* (DatLIFE 2018) are the most directly relevant efforts for this dissertation. Others, including *popler* (Compagnoni et al. 2019), *BIEN* (Maitner et al. 2017), and *D3* (Hintze et al. 2013) are all important sources of information, but do not necessarily incorporate population structure or the entire life cycle of the species into their data. Still others, such as the *HMD* (Human Mortality Database 2022), *HLD* (Human Lifetable Database 2022), and *IPUMS Terra* (Ruggles et al. 2018) are important contributions, but limit their phylogenetic scope to *Homo sapiens*. 
 
-### Survey of Applications
+*COMPADRE* and *COMADRE* are the most closely linked databases to this dissertation. Their history stretches back to the late 1980s, when Silvertown and Franco began archiving published MPMs as time- and space-averaged matrix models. It took some time to pay dividends, but eventually the effort did. The synthetic rewards included, for example, the fast-slow continuum of plant strategies (Franco & Silvertown 1997), a broad examination of the relative contributions of vital rates to population growth rates (Silvertown et al. 1993), and a synthesis of the evolution of senesence in plants. Researchers spent much of the 2000s working in parallel to compile similar data sets until unifying under the umbrella of *COMPADRE* (and expanding to mammals via *COMADRE*) in 2011 (Salguero-Gomez et al. 2014). In subsequent years, these databases have been enhanced with additional metadata to assist researchers in linking these data to other data sources to address increasingly complicated questions.  Since becoming open access in 2014 (*COMPADRE*) and 2015 (*COMADRE*), they have been cited 157 and 77 times, respectively. Clearly, these data sources have provided a substantial return on investment. 
 
-Include carpobrotus here somehow. 
+IPM usage is growing rapidly (Levin et al. 2021). Given the success of MPM repositories, a database of IPMs is certainly something the ecology community would benefit from. However, there are unique challenges posed in implementing such a database. Existing approaches to digitizing population models entail entering the iteration matrix/sub-matrix elements into databases (i.e. entering that actual value of the matrix cell). This is feasible since most MPMs don't have too many rows and columns (the majority of *COMPADRE* and *COMADRE* matrices are less than $20 \times 20$). Furthermore most transition elements are on the order of $[0.01, 1]$, making them easier to enter by hand. IPM iteration matrices are much higher dimensional (on the order of $50 \times 50 - 1000 \times 1000$), and the transition elements can be much smaller (i.e. $[1^{-10}, 1^{-2}]$). Finally, there is much more we can do with the IPM if we capture its underlying functional form, rather than just the iteration matrices/sub-matrices. Thus, creating such a database requires 2 additional pieces of work on top of the work required for current MPM databases:
+
+1. Define a syntax to represent IPMs symbolically in a database. This representation needs to be flexible enough to accommodate models across the range of complexities in the existing literature, and able to handle as much forthcoming, additional complexity as possible. 
+
+2. Implement an engine that can transform this database representation into something that's actually useful for a researcher who is not interested in the underlying technical details, and simply wants to focus on their research questions. Given the dominance of _R_ (R Core Development Team 2022) in the field of ecology, this would be the logical choice for such an engine. However, to facilitate including a broader array of backgrounds, bindings to other languages would be ideal.
+
+
+ 
+### The role of spatial data in demography
+
+1. Introduce scale dependence (e.g. individuals, populations/meta-populations, communities/meta-communities, bioregions, continents, globe)
+
+2. over how many important processes are inherently scale dependent (eg. surival/growth, competition/predation, dispersal, environmental feedbacks on lower processes).
+
+3. Emphasize that many of these things emerge from individual and population level trajectories, which are inherently demographic processes. 
+
+4. Introduce invasions as a case study, carpobrotus as a model
+
+Invasions
+
+  + 
+
 
 ### Citations
 
-12. Adler et al. (2010) Embarassment of niches
+17. Adler, P.B., Ellner, S.P. & Levine, J.M. (2010). Coexistance of perennial plants: an embarassment of niches. Ecology Letters 13: 1019-1029. https://doi.org/10.1111/j.1461-0248.2010.01496.x
+
+2. Bassar et al. (2016) Guppies!
+
+4. Bogdan, A., Levin, S.C., Salguero-Gómez, R., Knight, T.M. (2021). Demographic analysis of Israeli Carpobrotus populations: management strategies and future directions. PLoS ONE 16(4): e0250879.  https://doi.org/10.1101/2020.12.08.415174
 
 1. Caswell, H. (1978). A general formula for the sensitivity of population growth rate to changes in life history parameters. Theoretical Population Biology 14(2): 215-230. https://www.jstor.org/stable/2528566
 
 2. Caswell, H. (1989). Matrix Models 1st edition.
 
-3. Childs, D.Z. et al. (2004) Environmental stochasticity
+3. Childs, D.Z., Rees, M., Rose, K.E., Grubb, P.J., & Ellner, S.P. (2004). Evolution of size-dependent flowering in a variable environment: construction and analysis of a stochastic integral projection model. Proceedings of the Royal Society B 271(1547): 425-434. https://doi.org/10.1098/rpsb.2003.2597
 
-16. Coulson, T. (2011) Yellowstone wolves
+8. Compagnoni, A., Levin, S.C., Childs, D.Z., Harpole, S., Paniw, M., Roemer, G., Burns, J.H., Che-Castaldo, J., Rueger, N., Kunstler, G., Bennett, J.M., Archer, C.R., Jones, O.R., Salguero-Gómez, R., & Knight, T.M. (2021b). Herbaceous perennial plants with short generation time have stronger responses to climate anomalies than those with longer generation time. Nature Communications 12: 1824. https://doi.org/10.1038/s41467-021-21977-9
+
+23. Coulson, T., MacNulty, D.R., Stahler, D.R., von Holdt, B., Wayne, R.K., & Smith, D.W. (2011). Modeling effects of environmental change on wolf population dynamics, trait evolution, and life history. Science 334(6060): 1275-1278. https://doi.org/10.1126/science.1209441
+
+12. Crandall, R.M. & Knight, T.M. (2017). Role of multiple invasion mechanisms and their interaction in regulating the population dynamics of an exotic tree. Journal of Applied Ecology 55(2):885-894. https://doi.org/10.1111/1365-2664.13020
+
+20. Crone, E.E., Menges, E.S., Ellis, M.M., Bell, T., Bierzychudek, P, Ehrlen, J. et al. (2011) How do ecologists use matrix population models? Ecology Letters 14(1): 1-8. DOI: https://doi.org/10.1111/j.1461-0248.2010.01540.x
+
+21. Doak, D. & Morris W.F. (2002). Quantitative Conservation Biology: Theory and Practice of Population Viability Analysis. Oxford, UK: Oxford University Press
 
 5. Easterling, M.R., Ellner, S.P., & Dixon, P.M. (2000). Size-specific sensitivity: Applying a new structured population model. Ecology 81(3): 694-708. https://doi.org/10.1890/0012-9658(2000)081[0694:SSSAAN]2.0.CO;2
 
 2. Ebert, T.A. (1999). Plant and Animal Populations: Methods in Demography. Academic Press, San Diego, California.
 
-6. Ellner, S.P. & Rees, M. (2006) General IPMs
+16. Ellner, S.P. & Rees, M. (2006). Integral Projection Models for species with complex demography. The American Naturalist 167(3): 410-428.
 
 7. Ellner, S.P., Childs, D.Z., & Rees, M. (2016) Data driven modelling of structured populations: a practical guide to the Integral Projection Model. Springer, Switzerland.
 
+12. Erickson, R.A., Eager, E.A., Brey, M.B., Hansen, M.J., & Kocovsky, P.M. (2017). An integral projection model with YY-males and application to evaluating grass carp control. Ecological Modelling 361: 14-25. https://doi.org/10.1016/j.ecolmodel.2017.07.030
+
 19. Franklin, B. (1751) Observations concering the increase of mankind, peopling of countries, etc. 
+
+47. 18. Ferrer-Cervantes, M.E., Mendez-Gonzalez, M.E., Quintana-Ascencio, P-F., Dorantes, A., Dzib, G., & Duran, R. (2012). Population dynamics of the cactus _Mammillaria gaumeri_: an integral projection model approach. Population Ecology 54: 321-334. DOI: https://doi.org/10.1007/s10144-012-0308-7 
+
+46. Goodman, L.A. (1969) The analysis of population growth when the birth and death rates depend upon several factors. Biometrics 25(4): 659-681.
 
 10. Jensen, A.L. (1995) Simple density-dependent matrix for population projection. Ecological modelling 77: 43-48.
 
-14. Jongejans, E. et al. (2011) Spatial carduus IPM
+14. Jongejans, E., Shea, K., Skarpaas, O., Kelly, D., & Ellner, S.P. (2011). Importance of individual and environmental variation for invasive species spread: a spatial integral projection model. Ecology 92(1): 86-97. https://doi.org/10.1890/09-2226.1
 
 4. de Kroon, H., Plaisier A., van Groenendael, J., & Caswell, H. (1986). Elasticity: the relative contribution of demographic parameters to population growth rate. Ecology 67(5): 1427-1431. https://doi.org/10.2307/1938700.
 
+26. Human LifetableDatabase. University of California, Berkeley (USA), and Max Planck Institute for Demographic Research (Germany). Available at www.lifetable.de.
+
+25. Human Mortality Database.  University of California, Berkeley (USA), and Max Planck Institute for Demographic Research (Germany). Available at www.mortality.org or www.humanmortality.de.
+
 3. Lefkovitch, L.P. (1965). The study of population growth in organisms grouped by stages. Biometrics 21(1): 1-18. https://www.jstor.org/stable/2528348
+
+5. Leslie, P.H. (1945) The use of matrices in certain population mathematics. Biometrika, 33(3): 183–212.
+
+Levin et al. 2019, 
+
+Levin et al. 2020
 
 9. Liu, L. & Cohen, J.E. (1987). Equilibrium and local stability in a logistic matrix model for age-structured populations. Journal of Mathematical Biology 25: 73-88.
 
+10. Lommen, S.T.E., Jongejans, E., Leitsch-Vitalos, M., Tokarska-Guzik, B., Zalai, M., Mueller-Schaerer, H. & Karrer, G. (2018) Time to cut: population models reveal how to mow invasive common ragweed cost-effectively. NeoBiota 39: 53-78. DOI: 10.3897/neobiota.39.23398
+
+11. Lotka, A.J. (1925) Elements of Physical Biology, Williams and Wilkins.
+
 20. Malthus, T. (1798) An essay on the principle of population. J. Johnson, London, England.
 
-21. Merow et al. 2014 IPM guide w/ big old appendix
+21. McKendrick, A.G. (1926) Applications of mathematics to medical problems. Proceedings of the Edinburgh Mathematical Society 44: 98-130
 
-24. Metcalf et al. 2013 IPMpack
+45. McKendrick, A.G. & Kesava Pai, M. (1911). The Rate of Multiplication of Micro-organisms: A Mathematical Study. Proceedings of the Royal Society of Edinburgh. 31: 649–653. doi: 10.1017/S0370164600025426.
 
-22. Metcalf et al. 2015 Stochastic IPM guide
+22. Merow, C., Dahlgren, J.P., Metcalf, C.J.E., Childs, D.Z., Evans, M.E.K., Jongejans, E., Record, S., Rees, M., Salguero-Gomez R., & McMahon, S.M. (2014). Advancing population ecology with integral projection models: a practical guide. Methods in Ecology and Evolution 5: 99-110. https://doi.org/10.1111/2041-210X.12146S
+
+ Merow et al. 2017 DDMs Proceedings of the National Academy of Sciences 
+
+26. Metcalf et al. (2009) A time to grow and a time to die:
+
+23. Metcalf, C.J.E., Ellner, S.P., Childs, D.Z., Salguero-Gómez, R., Merow, C., McMahon, S.M., Jongejans, E., & Rees, M. (2015). Statistical modelling of annual variation for inference on stochastic population dynamics using Integral Projection Models. Methods in Ecology and Evolution 6(9): 1007-1017. https://doi.org/10.1111/2041-210X.12405
+
+65. Metcalf, C.J.E., Graham, A.L., Martinez-Bakker, M. & Childs, D.Z. (2015) Opportunities and challenges of Integral Projection Models for modelling host-parasite dynamics. Journal of Animal Ecology. DOI:  10.1111/1365-2656.12456
+
+24. Metcalf, C.J.E., McMahon, S. M., Salguero-Gómez, R. & Jongejans, E. (2013). IPMpack: an R  package for integral projection models. Methods in Ecology and Evolution. 4(2): 195-200. https://doi.org/10.1111/2041-210x.12001
+
+26. Metcalf, C.J.E. & Pavard, S. (2007) Why evolutionary biologists should be demographers. Trends in Ecology and Evolution 22(4): 205-212. DOI: 10.1016/j.tree.2006.12.001.
+
+
 
 17. Nicole et al. (2011) Alps climate demography.
 
@@ -159,10 +237,25 @@ Include carpobrotus here somehow.
 
 11. Rose, K. et al. 2005 density dependent thistle
 
-18. Simmonds et al. (2020) Ticking time bomb pheno asynchrony. 
+26. Ruggles, S., Manson, S.M, Kugler, T.A., Haynes, D.A., Van Riper, D.C., Bakhtsiyarava, M. (2018). IPUMS Terra: Integrated data on population and environment: Version 2. Minneapolis, MN: IPUMS.
 
-23. Shefferson et al. 2021 lefko3
+5. Salguero‐Gómez, R., Jones, O.R., Archer, C.R., Bein, C., de Buhr, H., Farack, C., Gottschalk, F., Hartmann, A., Henning, A., Hoppe, G., Roemer, G., Ruoff, T., Sommer, V., Wille, J. Voigt, J., Zeh, S., Vieregg, D., Buckley, Y.M., Che-Castaldo, J., Hodgson, D., et al. (2016) COMADRE: a global database of animal demography. Journal of Animal Ecology 85: 371-384. https://doi.org/10.1111/1365-2656.12482
+
+6. Salguero-Gómez, R, Jones, O.R., Archer, C.A., Buckley, Y.M., Che-Castaldo, J., Caswell, C., Hodgson, D., Scheuerlein, A., Conde, D.A., Brinks, E., de Buhr, H., Farack, C., Gottschalk, F., Hartmann, A., Henning, A., Hoppe, G., Roemer, G., Runge, J., Ruoff, T., et al. (2014) The COMPADRE Plant Matrix Database: an online repository for plant population dynamics. Journal of Ecology 103: 202-218. https://doi.org/10.1111/1365-2745.12334
+
+29. Simmonds E.G., Cole, E.F., Sheldon, B.C., & Coulson, T. (2020). Phenological asynchrony: a ticking time-bomb for seemingly stable populations? Ecology Letters 23(12): 1766-1775. https://doi.org/10.1111/ele.13603
+
+28. Shefferson, R.P., Kurokawa, S., & Ehrlen, J. (2020). LEFKO3: analysing individual history through size-classified matrix population models. Methods in Ecology and Evolution. https://doi.org/10.1111/2041-210X.13526
+
+33. Teller, B.J., Adler, P.B., Edwards, C.B., Hooker, G. & Ellner, S.P. (2016) Linking demography with drivers: climate and competition. Methods in Ecology and Evolution 7: 171-183. DOI: 10.1111/2041-210X.12486
 
 8. Vandermeer, J. (1978). Choosing category size in a stage projection matrix. Oecologia 32: 79-84.
 
-15. Vindenes, Y. et al. (2011) Demographic stochasticity.
+9. Verhulst, P.H. (1838) Notice sur la loi que la population poursuit dans son accroissement. Corresp. mathématique et physique 10, 113–121
+
+15. Vindenes, Y. Engen, S. & Saether, B-E. (2011) Integral projection models for finite populations in a stochastic environment. Ecology 92(5): 1146-1156. 
+
+15. Volterra, V. (1926) “Variazioni e fluttuazioni del numero d’individui in specie animali conviventi”, Mem. Acad. Lincei Roma, 2, 31–113.
+
+40. Zucarratto, R., Pires, A.S., Bergallo, H.G. & Portela, R.de C.Q. (2020) Felling the giants: integral projection models indicate adult management to control an exotic invasive palm. Plant Ecology. DOI: 10.1007/s11258-020-01090-5
+
