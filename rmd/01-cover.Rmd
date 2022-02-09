@@ -2,7 +2,7 @@
 
 \bcenter
 
-# Integral Projection Models Across Spatial Scales
+# Integral Projection Models Across Scales
 
 Dissertation zur Erlangung des Doktorgrades der
 Naturwissenschaften (Dr. rer. nat.)

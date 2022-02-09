@@ -20,4 +20,5 @@ header-includes:
   - \usepackage{hyperref}
   - \hypersetup{colorlinks = true, linkcolor = black, urlcolor = blue}
   - \setcounter{tocdepth}{2}
+  - \usepackage{amsmath}
 ---
