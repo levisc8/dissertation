@@ -1,6 +1,6 @@
 \newpage
 
-# Appendix 6: Supplementary Information for Chapter 2
+# Appendix 6: Supplementary Information for Chapter 3
 
 ### Database schema
 

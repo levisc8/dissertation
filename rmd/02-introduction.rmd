@@ -118,19 +118,17 @@ IPM usage is growing rapidly (Levin et al. 2021). Given the success of MPM repos
 
 2. Implement an engine that can transform this database representation into something that's actually useful for a researcher who is not interested in the underlying technical details, and simply wants to focus on their research questions (i.e. most researchers). Given the dominance of _R_ (R Core Development Team 2022) in the field of ecology, this would be the logical choice for such an engine. However, to facilitate including a broader array of backgrounds, bindings to other languages would be ideal. Thus, the syntax in Objective 1 should not be overly specific to _R_, and follow more general mathematical notation.
  
-### The role of spatial data in demography
+### IPMs and consideration of scale
 
-1. Introduce scale dependence (e.g. individuals, populations/meta-populations, communities/meta-communities, bioregions, continents, globe)
+Given the range of applications that IPMs, it is worth stepping back and considering the various scales they might function across and how they have been applied to these scales so far. When using the term scales, I am referring broadly to time, space, and phylogeny. Within each of these, there are differing ways in which they apply:
 
-2. over how many important processes are inherently scale dependent (eg. surival/growth, competition/predation, dispersal, environmental feedbacks on lower processes).
+1. Temporal scale, with respect to IPMs, usually comes in two flavors - the time step of the model iteration (i.e. the amount of actual time between $t$ and $t+1$), and the time frame of the total projection (i.e. stochastic models versus transient dynamic models versus asymptotic dynamics in deterministic models). In the former, the value is usually determined either by the speed in which the organism completes its life cycle, or, by the time step that has a meaningful biological interpretation. The latter is largely determined by the research question. Stochastic and asymptotic dynamics have dominated the literature over the years, but there is growing appreciation of the importance of transient dynamics.
 
-3. Emphasize that many of these things emerge from individual and population level trajectories, which are inherently demographic processes. 
+2. Spatial scale, with respect to IPMs, typically refers to either the extent of a population, or the number of populations studied and how far apart they are, or both. The former can very greatly across study species. For example, the sampling grain for a population of _Canis lupus_ (Yellowstone National Park, Coulson et al. 2011) can very different from the sampling grain for _Carduus nutans_ ($1m \times 1m$ plots, Levin et al. 2019). For the latter, there are numerous considerations, largely driven by the research question. For example, consideration of competitive interactions across many sites would require separate models fo, as competitive pressure decays rapidly with distance between individuals. Consideration of weather drivers of population dynamics requires sampling a broad spatial extent at small spatial grains to capture variation in both weather and population performance. This is far from an exhaustive list, and is only meant to illustrate that space must be considered.  
 
-4. Introduce invasions as a case study, carpobrotus as a model
+3. Phylogenetic scale, with respect to IPMs, is not one that is often considered. However, it is a useful concept, as many questions in ecology and evolution seek to generalize from species to genus to family, etc. The vast, vast majority of IPMs quantify dynamics of a one species. Some may include feedbacks between species (e.g. Bruno et al. 2011, Adler et al. 2010). However, there is some work that examines "family-level" demography (Traill et al. 2021).
 
-Invasions
-
-  + 
+Invasive species, in addition to presenting a pressing ecological (XXXX) and economic threat (XXXX), present an ideal system to examine all three of these meanings of scale. Species that become invasive usually undergo rapid spread, presenting a series of transient dynamics at the leading edge, while converging to asymptotic dynamics in the older center of invasion (XXX). The spatial scale of invasions can be viewed as local, in which the individuals in the population come to dominate their immediate area, and large extents (e.g. regional, continental) into which they spread and establish larger populations (XXX). Phylogenetic scale is especially prominent in the context of invasion biology, with work spanning nearly every taxonomic level of organization from single species (XXX), collections of species (e.g. XXXX), genera (e.g. XXXX), families (XXX), and even the entire angiosperm clade (Darwin 1859). Despite all of this, there is still much debate over how these various meanings of scale should apply to invasion biology.
 
 ### Objectives of the dissertation
 
@@ -173,6 +171,8 @@ In **Chapter 5**, I provide a synthesis of findings and recommendations for futu
 12. Crandall, R.M. & Knight, T.M. (2017). Role of multiple invasion mechanisms and their interaction in regulating the population dynamics of an exotic tree. Journal of Applied Ecology 55(2):885-894. https://doi.org/10.1111/1365-2664.13020
 
 20. Crone, E.E., Menges, E.S., Ellis, M.M., Bell, T., Bierzychudek, P, Ehrlen, J. et al. (2011) How do ecologists use matrix population models? Ecology Letters 14(1): 1-8. DOI: https://doi.org/10.1111/j.1461-0248.2010.01540.x
+
+22. Darwin, C. (1859) On the Origin of Species By Means of Natural of Selection. John Murray: UK.
 
 21. Doak, D. & Morris W.F. (2002). Quantitative Conservation Biology: Theory and Practice of Population Viability Analysis. Oxford, UK: Oxford University Press
 
@@ -265,6 +265,8 @@ In **Chapter 5**, I provide a synthesis of findings and recommendations for futu
 28. Shefferson, R.P., Kurokawa, S., & Ehrlen, J. (2020). LEFKO3: analysing individual history through size-classified matrix population models. Methods in Ecology and Evolution. https://doi.org/10.1111/2041-210X.13526
 
 33. Teller, B.J., Adler, P.B., Edwards, C.B., Hooker, G. & Ellner, S.P. (2016) Linking demography with drivers: climate and competition. Methods in Ecology and Evolution 7: 171-183. DOI: 10.1111/2041-210X.12486
+
+36. Traill, L., Plard, F., Galliard, J-M. & Coulson, T. (2021). Can we use a functional trait to construct a generalized model for ungulate populations? Ecology 102(4): e03289.
 
 8. Vandermeer, J. (1978). Choosing category size in a stage projection matrix. Oecologia 32: 79-84.
 
