@@ -1,0 +1,20 @@
+---
+output: html_document
+---
+
+$${Logit(s_a(z, \theta )) =
+\beta_{0, s, i} + \beta_{s,z} * z + }\\
+{\beta_{s, \theta_t, dry} *     \theta_{t, dry, i} +
+\beta_{s, \theta_t, wet} *     \theta_{t, wet, i} +} \\
+\beta_{s, \theta_p, dry} *    \theta_{p, dry, i} +
+\beta_{s, \theta_p, wet} *    \theta_{p, wet, i} + \\
+\beta_{s, \theta_{s2}, dry} * \theta_{s2, dry, i} + 
+\beta_{s, \theta_{s2}, wet} * \theta_{s2, wet, i} + \\
+\beta_{s, \theta_t \times z, dry} *    \theta_{t, dry, i} * z + 
+\beta_{s, \theta_t \times z, wet} *    \theta_{t, wet, i} * z + \\
+\beta_{s, \theta_p \times z, dry} *    \theta_{p, dry, i} * z + 
+\beta_{s, \theta_p \times z, wet} *    \theta_{p, wet, i} * z + \\
+\beta_{s, \theta_{s2} \times z, dry} * \theta_{s2, dry, i} * z + 
+\beta_{s, \theta_{s2} \times z, wet} * \theta_{s2, wet, i} * z + \\
+\beta_{s, native} * g(i) + \beta_{s, native \times z} * g(i) * z,\tag{4.1.4}$$
+

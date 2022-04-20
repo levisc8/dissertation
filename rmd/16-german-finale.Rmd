@@ -2,9 +2,8 @@
 
 # Eigenständigkeitserklärung
 
-Hiermit erkläre ich, dass die Arbeit mit dem Titel “Disentangling the mechanisms underlying
-the island species-area relationship (ISAR)” bisher weder bei der Naturwissenschaftlichen
-Fakultät III Agrar und Ernährungswissenschaften, Geowissenschaften und Informatik der
+Hiermit erkläre ich, dass die Arbeit mit dem Titel “Integral Projection Models Across Scales” bisher weder bei der Naturwissenschaftlichen
+Fakultät I Agrar und Ernährungswissenschaften, Geowissenschaften und Informatik der
 Martin-Luther-Universität Halle-Wittenberg noch einer anderen wissenschaftlichen
 Einrichtung zum Zweck der Promotion vorgelegt Wurde.
 
