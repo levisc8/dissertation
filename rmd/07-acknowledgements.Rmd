@@ -2,10 +2,12 @@
 
 # Acknowledgements
 
-I would not, nor could not, have done this work alone.  I first want to thank my supervisors, Tiffany Knight and Roberto Salgeuro-Gomez. Your mentorship has been invaluable, and I cannot think of two more supportive advisors in academia. I also want to thank the members of the Knight Lab over the last 6 years. None of these ideas would have happened were it not for the unrelenting support, intellectual brilliance, and comic relief you provided. So thanks to Aldo Compagnoni, Sanne Evers, Neeraja Venkataraman, Valentin Stefan, Dylan Craven, Joanne Bennett, Leana Zoller, Neeraja Venkataraman, Elena Motivans, Martin Andrzejak, Amibeth Thompson, Demetra Rakosy, Lotte Korell, and Michael Wohlwend. 
+I could not, nor would not, have done this work alone.  I first want to thank my supervisors, Tiffany Knight and Roberto Salgeuro-Gomez. Your mentorship has been invaluable, and I cannot think of two more supportive advisors in academia. I also want to thank the members of the Knight Lab over the last 6 years. None of these ideas would have happened were it not for the unrelenting support, intellectual brilliance, and comic relief you provided. So thanks to Aldo Compagnoni, Sanne Evers, Neeraja Venkataraman, Valentin Stefan, Dylan Craven, Joanne Bennett, Leana Zoller, Neeraja Venkataraman, Elena Motivans, Martin Andrzejak, Amibeth Thompson, Demetra Rakosy, Lotte Korell, and Michael Wohlwend. 
 
-I also owe a great debt to those who kept me sane throughout this whole ordeal, particularly Andrea Pacheco, Eduardo Arle, the three Leanas, Mike, Sanne, Max, Valentin, Martin, and Amibeth. Thanks for the impromptu nights out, the parties, and the Hops nights with Franz and Stine (and to the latter for putting up with us all these years).
+I also owe a great debt to those who kept me sane throughout this whole ordeal, particularly Andrea Pacheco, Eduardo Arle, the three Leana's, Mike, Sanne, Max, Valentin, Martin, and Amibeth. Thanks for the impromptu nights out, the parties, and the Hops nights with Franz and Stine (and to the latter for putting up with us all these years).
  
-I would be remiss in skipping over my friends back home: Alex, Henry, Ryan, Christian, Andy, Keith, Drew and the rest of the Denver team. Home was always a reset switch for me, and it was largely because of you that it felt that way. 
+I would be remiss in skipping over my friends back home: Alex, Henry, Ryan, Christian, Andy, Keith, Drew, and the rest of the Denver team. Home was always a reset switch for me, and it was largely because of you that it felt that way. 
 
 Speaking of home, I now have to thank my family. To my parents, Steve and Chris, and my brothers, Daniel and M - I have no words to convey how grateful I am for your love and support, and how impossible this would have been without it. I am so grateful for my grandparents Betty and Buddy Levin for their dedication to education and their support of mine, and to Robert and Lib Conner for inspiring my love of nature. I love you all. Thanks. 
+
+\newpage

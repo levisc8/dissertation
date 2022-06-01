@@ -2,30 +2,4 @@
 
 # Appendix 6: Supplementary Information for Chapter 3
 
-### Database schema
-
-PADRINO is structured such that each model gets one row for the Metadata table, and an arbitrary number of rows for every table after that. Some models may have 0, 1, or many rows for some of these tables. Information for each model is linked across tables by the `ipm_id` column. Complete descriptions of each column are provided [here](https://padrinodb.github.io/Padrino/digitization-guide.html#the-tables).
-
-```{r, echo = FALSE, warning = FALSE, message = FALSE}
-
-library(png)
-library(ggplot2)
-library(grid)
-library(dplyr)
-
-
-pic <- readPNG("Figures/schema.png")
-
-pic_grob <- rasterGrob(pic, interpolate = TRUE)
-
-plt <- qplot(1:14, 1:14, geom = "blank") +
-  annotation_custom(pic_grob,
-                    xmin = -Inf,
-                    xmax = Inf,
-                    ymin = -Inf,
-                    ymax = Inf) + 
-  theme_void()
-
-print(plt)
-
-```
+\includepdf[pages = -, nup = 1, pagecommand = {}]{rmd/published/rpdb-pdb-s3.pdf}
