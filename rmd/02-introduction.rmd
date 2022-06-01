@@ -1,4 +1,26 @@
-\newpage
+\newpage 
+
+```{r dependencies, echo = FALSE, message = FALSE, warning = FALSE}
+
+library(brms)
+library(dplyr)
+library(purrr)
+library(ggplot2)
+library(grid)
+library(gridExtra)
+library(Rcompadre)
+library(patchwork)
+library(Rpadrino)
+library(knitr)
+library(kableExtra)
+library(sf)
+library(png)
+library(BIEN)
+library(mgcv)
+library(tools)
+
+
+```
 
 # Summary 
 
@@ -271,9 +293,9 @@ The second objective of this dissertation is to provide a database of peer-revie
 
 2. Provide a tool that abstracts away the details of the database and enables researchers to easily subset and reproduce these IPMs. This is provided via `Rpadrino` (**Chapter 3**) and `ipmr` (**Chapter 2**). 
 
-PADRINO provides a repository for IPMs with extensive metadata. It also contains symbolic representations of the IPMs and the parameters used to implement them. It can store determinstic or stochastic, density/frequency-dependent or -independent, and simple or general IPMs. The syntax used to store the IPMs symbolically mirrors the mathematical notation for them. `Rpadrino` provides an interface to download PADRINO, subset PADRINO, and translate PADRINO's syntax into valid `ipmr` code. `ipmr` is then used as backend for reconstructing IPM objects. Chapter 3 is submitted and under review at Methods in Ecology and Evolution. 
+PADRINO provides a repository for IPMs with extensive metadata. It also contains symbolic representations of the IPMs and the parameters used to implement them. It can store determinstic or stochastic, density/frequency-dependent or -independent, and simple or general IPMs. The syntax used to store the IPMs symbolically mirrors the mathematical notation for them. `Rpadrino` provides an interface to download PADRINO, subset PADRINO, and translate PADRINO's syntax into valid `ipmr` code. `ipmr` is then used as backend for reconstructing IPM objects. Chapter 3 is published as: Levin, S.C., Evers, S., Potter, T., Guerrero, M.P., Childs, D.Z., Compagnoni, A., Knight, T.M. & Salguero-Gomez, R. (2022) Rpadrino: an R package to access and use PADRINO, an open access database of Integral Projection Models. Methods in Ecology and Evolution. DOI: https://doi.org/10.1111/2041-210X.13910. 
 
-**Chapter 4** of this dissertation applies these tools to examine how environmental drivers affect demography of invasive species at both local and broad spatial scales using the _Carpobrotus_ genus. I used drones to collect demographic data from 14 sites on four continents across the native and invaded range. I then develop an IPM using `ipmr` for each site that includes environmental covariates to show how _Carpobrotus_ responds to novel environments. 
+**Chapter 4** of this dissertation applies these tools to examine how environmental drivers affect demography of invasive species at both local and broad spatial scales using the _Carpobrotus_ genus. I used drones to collect demographic data from 14 sites on four continents across the native and invaded range. I develop an IPM using `ipmr` for each site that includes environmental covariates to show how _Carpobrotus_ responds to environmental drivers. Finally, I use a Life Table Response Experiment to quantify the contributions of climate drivers to overall fitness.
 
 In **Chapter 5**, I provide a synthesis of findings and recommendations for future research.
 
