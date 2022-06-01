@@ -1,0 +1,175 @@
+---
+output:
+  pdf_document: default
+---
+\pagenumbering{gobble}
+
+# Appendix 7: Supplementary Information for Chapter 4
+
+### IPM Equations
+
+IPMs describe how the abundance and distribution of a continuously distributed trait changes in a population through discrete time. Vital rates are combined in projection kernels that describe state-dependent per-capita contributions of existing individuals to the population trait distribution in the following time step via survival and development (denoted ($P(z',z)$)) and sexual and asexual reproduction (denoted $F(z',z)$ and $C(z',z)$ respectively).
+
+
+$$n(z',t+1) = \int_L^U [G(z'|z, \sigma, \theta) * s_a(z,\theta)]n(z,t)dz + s_s * r_a(z')sdl(t), \tag{4.1.1}$$
+
+$$mf(t+1) = \int_L^U [p_f(z,\theta) * s_a(z,\theta) * r_f(z,\theta) * p_m * p_{fv}]n(z,t)dz, \tag{4.1.2}$$
+
+$$sdl(t+1) = p_e * g_i * v_s * mf(t) + s_{sb} * g_{sb} * p_e * sb(t), \tag{4.1.3}$$
+
+and 
+
+$$sb(t+1) = s_{sb} * (1-g_{sb}) * sb(t) + (1-g_i) * v_s * mf(t). \tag{4.1.4}$$
+
+The survival probability of non-seedlings function, $s_a(z, \theta)$, is given by:
+
+```{=latex}
+\[Logit(s_a(z, \theta)) = \beta_{0,s,i} + \beta_{s,z} * z + \tag{4.1.5} \]
+\[\beta_{s, \theta_t, dry} * \theta_{t, dry, i} + \beta_{s, \theta_t, wet} * \theta_{t, wet, i} + \]
+\[\beta_{s, \theta_p, dry} * \theta_{p, dry, i} + \beta_{s, \theta_p, wet} * \theta_{p, wet, i} + \]
+\[\beta_{s, \theta_{s3}, dry} * \theta_{s3, dry, i} + \beta_{s, \theta_{s3}, wet} * \theta_{s3, wet, i} + \]
+\[\beta_{s, \theta_t \times z, dry} * \theta_{t, dry, i} * z + \beta_{s, \theta_t \times z, wet} * \theta_{t, wet, i} * z + \]
+\[\beta_{s, \theta_p \times z, dry} * \theta_{p, dry, i} * z + \beta_{s, \theta_p \times z, wet} * \theta_{p, wet, i} * z + \]
+\[\beta_{s, \theta_{s3} \times z, dry} * \theta_{s3, dry, i} * z + \beta_{s, \theta_{s3} \times z, wet} * \theta_{s3, wet, i} * z\]
+
+```
+
+
+where $wet$ and $dry$ denote wet season and dry seasons covariation values, $i$ indexs each site in Table 4.1, and the function $g()$ takes a site $i$ and returns 0 for sites in the invaded range and 1 for sites in the native range. The development function, $G(z'|z, \sigma, \theta)$ is given by:
+
+$$G(z'|z, \sigma, \theta) = f_G(z'|\mu_G(z, \theta), \sigma_G(z, i)), \tag{4.1.6}$$
+
+where $f_G$ denotes a normal probability density function, $\mu_G(z,\theta)$ is given by:
+
+```{=latex}
+
+\[\mu_G(z, \theta) = \beta_{0,G,i} \tag{4.1.7} \]
+
+```
+
+where $f_{t2}$ and $f_s$ denote a set of spline basis functions created by `t2` and `s()` from the `mgcv` _R_ package (Wood 2017). $mean$ and $seas$ denote the mean annual value and the seasonality of the monthly values, respectively. $\sigma_G(z, i)$ is given by:
+
+$$\sigma_G(z, i) = \beta_{0, \sigma_G, i} + \beta_{z, \sigma_G} * z. \tag{4.1.8}$$
+
+The probability of flowering function, $p_f(z,\theta)$, is given by: 
+
+```{=latex}
+
+\[Logit(p_f(z, \theta)) = \beta_{0, p_f, i} + \beta_{z, p_f} * z \tag{4.1.9} +\]
+\[f_s(\theta_{t, mean, i}) + f_s(\theta_{p, total, i})  + \]
+\[\beta_{p_f, \theta_t, seas} * \theta_{t, seas, i} + \beta_{p_f, \theta_p, seas} * \theta_{p, seas, i} + \]
+\[\beta_{p_f, \theta_{s2}, mean} * \theta_{s2, mean, i} + \beta_{p_f, \theta_{s2}, seas} * \theta_{s2, seas, i} + \]
+\[\beta_{p_f, \theta_t \times z, seas} * \theta_{t, seas, i} * z + \beta_{p_f, \theta_p \times z, seas} * \theta_{p, seas, i} * z +\]
+\[\beta_{p_f, \theta_{s2} \times z, mean} * \theta_{s2, mean, i} * z + \beta_{p_f, \theta_{s2} \times z, seas} * \theta_{s2, seas, i} * z \]
+
+```
+
+The number of flowers produced conditional on flowering function, $r_f(z,\theta)$, is given by: 
+
+```{=latex}
+
+\[Log(r_f(z, \theta)) = \beta_{0, r_f, i} \tag{4.1.10} \]
+
+```
+
+Finally, the size distribution of newly observed non-seedling plants, $r_a(z')$, is given by:
+
+$$r_a(z') = f_{r_a}(z'| \mu_{r_a}, \sigma_{r_a}), \tag{4.1.11}$$
+
+where $f_{r_a}$ is a Gaussian probability density function.
+
+
+```{r echo = FALSE, message = FALSE, warning = FALSE}
+
+to_greek <- function(mod, vr) {
+  
+  summ    <- summary(mod, prob = 0.89)$fixed
+  
+  var_nms <- row.names(summ) %>%
+  gsub(pattern = "\\:", "_inter_", x = .) %>%
+  lapply(function(x, env) {
+    eval(parse(text = x), envir = env)
+  }, env = greek_env(vr))
+  
+  var_vals <- data.frame(
+    Parameter = unlist(var_nms),
+    Mean      = round(summ$Estimate,   3),
+    lower_ci  = round(summ$`l-89% CI`, 3),
+    upper_ci  = round(summ$`u-89% CI`, 3),
+    R_hat     = summ$Rhat
+  )
+  
+  return(var_vals)
+  
+}
+
+greek_env <- function(vr) {
+  
+  thetas <- paste0("\\theta_{", 
+                   c("t", "p", "s1", "s2"), 
+                   "}") %>% 
+    replicate(n = 8, expr = .) %>%
+    as.vector() %>%
+    paste0(", ", c("wet", "dry", "mean", "seas")) 
+  
+    theta_ints <- paste0("\\theta_{", 
+                   c("t", "p", "s1", "s2"), 
+                   "} \\times z") %>% 
+    replicate(n = 8, expr = .) %>%
+    as.vector() %>%
+    paste0(", ", c("wet", "dry", "mean", "seas")) 
+  
+  all_fixed <- c("log_size",
+                 # T and T-1 env values
+                 "temp_wet_t", "prec_wet_t", "sw1_wet_t", "sw2_wet_t",
+                 "temp_dry_t", "prec_dry_t", "sw1_dry_t", "sw2_dry_t",
+                 "mean_temp_t", "total_prec_t", "mean_sw1_t", "mean_sw2_t",
+                 "seas_temp_t", "seas_prec_t", "seas_sw1_t", "seas_sw2_t",
+                 
+                 "temp_wet_t_1", "prec_wet_t_1", "sw1_wet_t_1", "sw2_wet_t_1",
+                 "temp_dry_t_1", "prec_dry_t_1", "sw1_dry_t_1", "sw2_dry_t_1", 
+                 "mean_temp_t_1", "total_prec_t_1", "mean_sw1_t_1", "mean_sw2_t_1",
+                 "seas_temp_t_1", "seas_prec_t_1", "seas_sw1_t_1", "seas_sw2_t_1",
+                 # Intercepts
+                  "native", "Intercept", "sigma_Intercept", "sigma_log_size")
+  
+
+  all_ints <- paste0("log_size_inter_", c(all_fixed[2:33], "native"))  
+  
+  fixeds <- as.list(paste0("\\beta_{", vr, ", ",
+                           c("z", thetas),
+                           "}")) %>%
+    c(paste0("\\beta_{", vr, ", native}"),
+      paste0("\\beta_{0, ", vr, ", i}"),
+      "\\beta_{0, \\sigma_G, i}", 
+      "\\beta_{z, \\sigma_G}") %>%
+    setNames(all_fixed)
+  
+  inters <- as.list(paste0("\\beta_{", vr, ", ",
+                           paste0(c(theta_ints), "}"))) %>%
+    c(paste0("\\beta_{", vr, ", \\native \\times z}")) %>%
+    setNames(all_ints)
+  
+  list2env(c(fixeds, inters), parent = emptyenv())
+}
+# 
+# all_ramets <- readRDS("Data/all_ramets_di.rds")
+# all_sdls   <- readRDS("Data/seedlings.rds")
+# all_surv_mods <- readRDS("Data/ramet_survival_list_krig.rds")
+# all_flow_mods <- readRDS("Data/ramet_flower_n_list_krig.rds")
+# 
+# surv_mod <- all_surv_mods[[1]][["times_sw2_seas"]]
+# flow_mod <- all_flow_mods[[1]][["times_sw2_ann"]]
+# 
+# grow_mod <- readRDS("Data/grow_2_1_lin_gam_mix.rds")
+# repr_mod <- readRDS("Data/repro_lin_gam_mix.rds")
+# recr_mod <- readRDS("Data/recr_size_brm.rds")
+# 
+# g_fix <- to_greek(grow_mod, "\\mu_G")
+# s_fix <- to_greek(surv_mod, "s")
+# p_fix <- to_greek(repr_mod, "p_f")
+# f_fix <- to_greek(flow_mod, "r_f")
+
+```
+
+
