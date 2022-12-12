@@ -1,6 +1,10 @@
 ---
 output:
   pdf_document: default
+header-includes:
+  - \usepackage{pdflscape}
+  - \newcommand{\blandscape}{\begin{landscape}}
+  - \newcommand{\elandscape}{\end{landscape}}
 ---
 \pagenumbering{gobble}
 
@@ -30,7 +34,7 @@ The survival probability of non-seedlings function, $s_a(z, \theta)$, is given b
 \[\beta_{s, \theta_{s3}, dry} * \theta_{s3, dry, i} + \beta_{s, \theta_{s3}, wet} * \theta_{s3, wet, i} + \]
 \[\beta_{s, \theta_t \times z, dry} * \theta_{t, dry, i} * z + \beta_{s, \theta_t \times z, wet} * \theta_{t, wet, i} * z + \]
 \[\beta_{s, \theta_p \times z, dry} * \theta_{p, dry, i} * z + \beta_{s, \theta_p \times z, wet} * \theta_{p, wet, i} * z + \]
-\[\beta_{s, \theta_{s3} \times z, dry} * \theta_{s3, dry, i} * z + \beta_{s, \theta_{s3} \times z, wet} * \theta_{s3, wet, i} * z\]
+\[\beta_{s, \theta_{s3} \times z, dry} * \theta_{s3, dry, i} * z + \beta_{s, \theta_{s3} \times z, wet} * \theta_{s3, wet, i} * z,\]
 
 ```
 
@@ -49,7 +53,7 @@ where $f_G$ denotes a normal probability density function, $\mu_G(z,\theta)$ is 
 
 where $f_{t2}$ and $f_s$ denote a set of spline basis functions created by `t2` and `s()` from the `mgcv` _R_ package (Wood 2017). $mean$ and $seas$ denote the mean annual value and the seasonality of the monthly values, respectively. $\sigma_G(z, i)$ is given by:
 
-$$\sigma_G(z, i) = \beta_{0, \sigma_G, i} + \beta_{z, \sigma_G} * z. \tag{4.1.8}$$
+$$\sigma_G(z, i) = \beta_{0, \sigma_G, i} + \beta_{z, \sigma_G} * z + .... \tag{4.1.8}$$
 
 The probability of flowering function, $p_f(z,\theta)$, is given by: 
 
@@ -60,7 +64,7 @@ The probability of flowering function, $p_f(z,\theta)$, is given by:
 \[\beta_{p_f, \theta_t, seas} * \theta_{t, seas, i} + \beta_{p_f, \theta_p, seas} * \theta_{p, seas, i} + \]
 \[\beta_{p_f, \theta_{s2}, mean} * \theta_{s2, mean, i} + \beta_{p_f, \theta_{s2}, seas} * \theta_{s2, seas, i} + \]
 \[\beta_{p_f, \theta_t \times z, seas} * \theta_{t, seas, i} * z + \beta_{p_f, \theta_p \times z, seas} * \theta_{p, seas, i} * z +\]
-\[\beta_{p_f, \theta_{s2} \times z, mean} * \theta_{s2, mean, i} * z + \beta_{p_f, \theta_{s2} \times z, seas} * \theta_{s2, seas, i} * z \]
+\[\beta_{p_f, \theta_{s2} \times z, mean} * \theta_{s2, mean, i} * z + \beta_{p_f, \theta_{s2} \times z, seas} * \theta_{s2, seas, i} * z. \]
 
 ```
 
@@ -68,108 +72,80 @@ The number of flowers produced conditional on flowering function, $r_f(z,\theta)
 
 ```{=latex}
 
-\[Log(r_f(z, \theta)) = \beta_{0, r_f, i} \tag{4.1.10} \]
+\[Log(r_f(z, \theta)) = \beta_{0, r_f, i} + \beta_{z, r_f} * z + \tag{4.1.10} \]
+\[\beta_{r_f, \theta_t, mean} * \theta_{t, mean, i} + \beta_{r_f, \theta_t, seas} * \theta_{t, seas, i} +  \] 
+\[\beta_{r_f, \theta_p, total} * \theta_{p, total, i} + \beta_{r_f, \theta_p, seas} * \theta_{p, seas, i} + \]
+\[\beta_{r_f, \theta_{s2}, mean} * \theta_{s2, mean, i} + \beta_{r_f, \theta_{s2}, seas} * \theta_{s2, seas, i} + \]
+\[\beta_{r_f, \theta_t \times z, mean} + \theta_{t, mean, i} * z + \beta_{r_f, \theta_t \times z, seas} * \theta_{t, seas, i} * z + \]
+\[\beta_{r_f, \theta_p \times z, total} + \theta_{p, total, i} * z + \beta_{r_f, \theta_p \times z, seas} * \theta_{p, seas, i} * z + \]
+\[\beta_{r_f, \theta_{s2} \times z, mean} + \theta_{s2, mean, i} * z + \beta_{r_f, \theta_s2 \times z, seas} * \theta_{s2, seas, i} * z + \]
+\[\beta_{r_f, native} * g(i) + \beta_{r_f, native \times z} * g(i) * z.\]
 
 ```
 
-Finally, the size distribution of newly observed non-seedling plants, $r_a(z')$, is given by:
+$g(i)$ is a function that returns 1 if site $i$ in the native range (South Africa) and 0 when site $i$ is located elsewhere.  Finally, the size distribution of newly observed non-seedling plants, $r_a(z')$, is given by:
 
 $$r_a(z') = f_{r_a}(z'| \mu_{r_a}, \sigma_{r_a}), \tag{4.1.11}$$
 
 where $f_{r_a}$ is a Gaussian probability density function.
 
 
+# Vital rate model summaries and diagnostics
+
 ```{r echo = FALSE, message = FALSE, warning = FALSE}
 
-to_greek <- function(mod, vr) {
-  
-  summ    <- summary(mod, prob = 0.89)$fixed
-  
-  var_nms <- row.names(summ) %>%
-  gsub(pattern = "\\:", "_inter_", x = .) %>%
-  lapply(function(x, env) {
-    eval(parse(text = x), envir = env)
-  }, env = greek_env(vr))
-  
-  var_vals <- data.frame(
-    Parameter = unlist(var_nms),
-    Mean      = round(summ$Estimate,   3),
-    lower_ci  = round(summ$`l-89% CI`, 3),
-    upper_ci  = round(summ$`u-89% CI`, 3),
-    R_hat     = summ$Rhat
-  )
-  
-  return(var_vals)
-  
-}
+all_surv_mods <- readRDS("ipms/Model_Fits/ramet_survival_list_krig.rds")
+all_flow_mods <- readRDS("ipms/Model_Fits/ramet_flower_n_list_lin_slope_ran.rds")
+all_grow_mods <- readRDS("ipms/Model_Fits/ramet_growth_list_krig.rds")
+all_repr_mods <- readRDS("ipms/Model_Fits/ramet_repro_list_krig.rds")
 
-greek_env <- function(vr) {
-  
-  thetas <- paste0("\\theta_{", 
-                   c("t", "p", "s1", "s2"), 
-                   "}") %>% 
-    replicate(n = 8, expr = .) %>%
-    as.vector() %>%
-    paste0(", ", c("wet", "dry", "mean", "seas")) 
-  
-    theta_ints <- paste0("\\theta_{", 
-                   c("t", "p", "s1", "s2"), 
-                   "} \\times z") %>% 
-    replicate(n = 8, expr = .) %>%
-    as.vector() %>%
-    paste0(", ", c("wet", "dry", "mean", "seas")) 
-  
-  all_fixed <- c("log_size",
-                 # T and T-1 env values
-                 "temp_wet_t", "prec_wet_t", "sw1_wet_t", "sw2_wet_t",
-                 "temp_dry_t", "prec_dry_t", "sw1_dry_t", "sw2_dry_t",
-                 "mean_temp_t", "total_prec_t", "mean_sw1_t", "mean_sw2_t",
-                 "seas_temp_t", "seas_prec_t", "seas_sw1_t", "seas_sw2_t",
-                 
-                 "temp_wet_t_1", "prec_wet_t_1", "sw1_wet_t_1", "sw2_wet_t_1",
-                 "temp_dry_t_1", "prec_dry_t_1", "sw1_dry_t_1", "sw2_dry_t_1", 
-                 "mean_temp_t_1", "total_prec_t_1", "mean_sw1_t_1", "mean_sw2_t_1",
-                 "seas_temp_t_1", "seas_prec_t_1", "seas_sw1_t_1", "seas_sw2_t_1",
-                 # Intercepts
-                  "native", "Intercept", "sigma_Intercept", "sigma_log_size")
-  
 
-  all_ints <- paste0("log_size_inter_", c(all_fixed[2:33], "native"))  
-  
-  fixeds <- as.list(paste0("\\beta_{", vr, ", ",
-                           c("z", thetas),
-                           "}")) %>%
-    c(paste0("\\beta_{", vr, ", native}"),
-      paste0("\\beta_{0, ", vr, ", i}"),
-      "\\beta_{0, \\sigma_G, i}", 
-      "\\beta_{z, \\sigma_G}") %>%
-    setNames(all_fixed)
-  
-  inters <- as.list(paste0("\\beta_{", vr, ", ",
-                           paste0(c(theta_ints), "}"))) %>%
-    c(paste0("\\beta_{", vr, ", \\native \\times z}")) %>%
-    setNames(all_ints)
-  
-  list2env(c(fixeds, inters), parent = emptyenv())
-}
-# 
-# all_ramets <- readRDS("Data/all_ramets_di.rds")
-# all_sdls   <- readRDS("Data/seedlings.rds")
-# all_surv_mods <- readRDS("Data/ramet_survival_list_krig.rds")
-# all_flow_mods <- readRDS("Data/ramet_flower_n_list_krig.rds")
-# 
-# surv_mod <- all_surv_mods[[1]][["times_sw2_seas"]]
-# flow_mod <- all_flow_mods[[1]][["times_sw2_ann"]]
-# 
-# grow_mod <- readRDS("Data/grow_2_1_lin_gam_mix.rds")
-# repr_mod <- readRDS("Data/repro_lin_gam_mix.rds")
-# recr_mod <- readRDS("Data/recr_size_brm.rds")
-# 
-# g_fix <- to_greek(grow_mod, "\\mu_G")
-# s_fix <- to_greek(surv_mod, "s")
-# p_fix <- to_greek(repr_mod, "p_f")
-# f_fix <- to_greek(flow_mod, "r_f")
+surv_mod <- all_surv_mods[[1]][["times_sw3_seas"]]
+flow_mod <- all_flow_mods[[1]][["times_sw3_seas"]]
+grow_mod <- all_grow_mods[[1]][["times_sw3_seas"]]
+repr_mod <- all_repr_mods[[1]][["times_sw1_seas"]]
+
+```
+
+\newpage
+\blandscape
+
+## Survival model
+
+```{r}
+
+summary(surv_mod)
+
+```
+
+## Growth model
+
+```{r}
+
+summary(grow_mod)
+
+```
+
+## Pr(Flowering) model
+
+```{r}
+
+summary(repr_mod)
+
+```
+
+## Flower number model
+
+```{r}
+
+summary(flow_mod)
+
+```
+
+```{r}
+
 
 ```
 
 
+\elandscape
