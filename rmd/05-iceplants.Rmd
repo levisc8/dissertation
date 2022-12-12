@@ -1,6 +1,9 @@
-\newpage
+---
+output:
+  word_document: default
+---
 
-# Chapter 4: Climate constrains the current distribution of a highly invasive succulent 
+# Chapter 4: Relationship between climate and fitness of a highly invasive succulent 
 
 Sam C. Levin $^{\ast1,2,3}$, Roberto Salguero-Gómez $^{3\ddagger}$, Tiffany M. Knight $^{1,2,4\ddagger}$
 
@@ -17,6 +20,8 @@ $^\ddagger$ Joint senior authors
 
 ### Abstract
 
+Invasive species pose a substantial threat to biodiversity, and Mediterranean dunes are especially threatened by them. In conjunction with this threat, climate change imposes further pressures on these ecosystems. Robust management policies to mitigate these threats requires detailed information on how climate is expected to alter the fitness of invaders so that management efforts can be targeted to maximize desirable outcomes. _Carpobrotus_ species are a widely distributed invasive species, making them ideal for studying how climate affects fitness. We developed a novel, drone based method of collecting demographic data for 13 sites distributed across the native and invaded ranges, and used this data to parameterize Integral Projection Models to estimate fitness as a function of climate variables. A life table response experiment on these models indicates that climate is not a strong driver of fitness.
+
 ```{r echo = FALSE, message = FALSE, warning = FALSE, eval = TRUE}
 
 # Remove this block to compile complete dissertation.
@@ -29,6 +34,7 @@ library(ggplot2)
 library(randomForest)
 library(patchwork)
 library(forcats)
+library(sf)
 
 ```
 
@@ -83,7 +89,7 @@ We used drones to collect aerial imagery each population. The following methods 
 
 Once all images were captured after the first aerial survey, individual photos were processed into a single composite, georeferenced orthomosaic map using Pix4Dmapper (Pix4D SA, 2019). We drew individual polygons around contiguous *Carpobrotus* ramets, assigned each a unique ID number, and counted flowers using a point layer in QGIS (QGIS Development Team 2021). We repeated the process in 2019 by overlaying the 2019 map on the 2018 map and marking polygons for all surviving individuals as well as new recruits also in QGIS. The surveys sometimes did not perfectly overlap with each other, so ramets from the first survey that were not flown over again were excluded from all analyses. Individual ramets that were not found again in our second aerial survey were assumed dead. Maps were aligned between the first and second surveys using the Georeferencer GDAL plugin (QGIS Development Team 2021) in QGIS because the georeferencing of the orthomosaics was only accurate to ~5m. This plugin allows users to manually find and mark common points on both images and set them as reference points for transformation between the old coordinate system (map coordinates of survey 2) and the new coordinate system (map coordinates of survey 1). We used the thin plate splines transformation for the coordinate systems and nearest neighbor resampling method. The reference points are available in the supplementary materials. In addition to drawing polygons around the individual plants, we drew polygons around targets of known sizes and computed the ratio of calculated areas under the polygon vs the known sizes. We then re-scaled all computed sizes of plants using this ratio. Once all sizes, flowering information, and survival data were digitized, we used the `sf` (Pebesma 2018) and `dplyr` (Wickham et al. 2022) _R_ packages to join all the ramet data into a single dataset. In some cases, the second drone flight could not cover the entire extent of the first one (e.g. due to new construction of power lines). Ramets that could not be re-sampled were included in the probability of flowering and number of flowers produced regression models, but omitted from survival and growth analyses (see below for details).
 
-```{r echo = FALSE, message = FALSE}
+```{r echo = FALSE, message = FALSE, warning = FALSE}
 
 ipm_sites <- c("Struisbaai", "St_Francis", "Melkboss", "Vogelgat",
                "Rooisand", "Springfontein", "Rough_Island",
@@ -99,9 +105,10 @@ sites <- rams %>%
   group_by(site) %>%
   summarise(N_ramets = n()) %>%
   right_join(sites, by = c("site" = "population")) %>%
-  select(site, lat, lon, date_flight_1, date_flight_2, N_ramets) 
+  select(site, lat, lon, date_flight_1, date_flight_2, N_ramets) %>%
+  mutate(lat = round(lat, 2), lon = round(lon, 2))
 
-sites$population <- gsub("_", " ", sites$population)
+sites$site <- gsub("_", " ", sites$site)
 
 names(sites) <- gsub("_", " ", names(sites))
 
@@ -110,15 +117,14 @@ names(sites) <- toTitleCase(names(sites))
 cap <- "Table 4.1: Population locations, sample dates, and sizes."
 
 kable(sites,
-       format = "html",
-      # col.names = c("Concept", "Column Name", "Description"),
-      caption = cap) %>%
-  column_spec(1, border_left = TRUE) %>%
-  column_spec(6, border_right = TRUE)
+       format = "simple",
+      caption = cap)# %>%
+  # column_spec(1, border_left = TRUE) %>%
+  # column_spec(6, border_right = TRUE)
 
 ```
 
-```{r echo = FALSE, message = FALSE, warning = FALSE, fig.cap = "**Figure 4.1**:  Geographic distribution of ll sites used for climate envelope calculations (in black) and all sites used for demographic modeling (in red). Insets show locations within each region."}
+```{r echo = FALSE, message = FALSE, warning = FALSE, fig.cap = "**Figure 4.1**:  Geographic distribution of all sites used for climate envelope calculations (in black) and all sites used for demographic modeling (in red). Insets show locations within each region."}
 
 
 wrld <- st_read("../Data/World_Continents/continents.shp", quiet = TRUE) 
@@ -255,9 +261,9 @@ Our goal was to determine both the shape and magnitude of a climate driver's eff
 
 We successfully sampled `r nrow(repr_dat)` ramets for probability of flowering ($p_f(z, \theta)$), `r nrow(flow_dat)` ramets for number of flowers produced ($r_f(z, \theta)$), `r nrow(surv_dat)` ramets for survival ($s_a(z, \theta)$), and `r nrow(grow_dat)` ramets for growth ($G(z' | z, \sigma, \theta)$). Model selection and diagnostic plots for all vital rates indicated GLMM fits were best. We used a number of sources for each discrete parameter estimate (Appendix Table 14.2). 
 
-IPMs yielded $\lambda$ values between 0.6 and 1.3 for every population we sampled. GAMs for $lambda_i$ as a function of each climate variable show differing responses, but climate parameters were generally of low importance in predicting $\lambda$ values, indicating a weak relationship between climate and population performance (Figure 4.2). However, dry seasons precipitation showed a consistently negative effect on $\lambda_i$.
+IPMs yielded $\lambda$ values between 0.6 and 1.3 for every population we sampled. GAMs for $lambda_i$ as a function of each climate variable show differing responses, though no relationship was statistically significant. Climate parameters were generally of low importance in predicting $\lambda$ values, yielding little evidence of a relationship between climate and population performance (Figure 4.2). Dry season precipitation showed the most negative, yet non-significant, effect on $\lambda_i$ ($p = 0.243$). All other regressions of $\lambda$ on a climate driver were not significant.
 
-```{r echo = FALSE, warning = FALSE, fig.cap = "**Figure 4.2**: Relationship between $\lambda$ and the climate variables included in the IPMs. Black dashed lines represent the fit from the GAMs of `lambda ~ <climate_variable>`, and red dotted lines indicate $\lambda = 1$, meaning the population is stable.", fig.height = 8, fig.width = 10}
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.cap = "**Figure 4.2**: Relationship between $\\lambda$ and the climate variables included in the IPMs. Black dashed lines represent the fit from the GAMs of `lambda ~ <climate_variable>`, and red dotted lines indicate $\\lambda = 1$, meaning the population is stable. None of the relationships shown here are statistically significant.", fig.height = 8, fig.width = 10}
 
 all_lams <- lams %>%
   pivot_longer(cols = -c(obs),
@@ -290,26 +296,22 @@ all_data <- all_lams %>%
     TRUE ~ "Invasive"
   ))
 
-use_clim_vars <- expand.grid(clim = c("prec_dry", "temp_dry", "prec_wet"),
+use_clim_vars <- expand.grid(clim = c("prec_dry", "prec_wet"),
                              t    = c("t", "t_1")) %>%
   apply(1, FUN = function(x) paste0(x, collapse = "_"))
 
 plt_dat <- filter(all_data, clim_var %in% use_clim_vars) %>%
   mutate(clim_var = case_when(
-    clim_var == "temp_dry_t" ~ "Dry season temperature (t)",
-    clim_var == "prec_dry_t" ~ "Dry season precipitation (t)",
-    clim_var == "prec_wet_t" ~ "Wet seasons precipitation (t)",
-    clim_var == "temp_dry_t_1" ~ "Dry season temperature (t + 1)",
-    clim_var == "prec_dry_t_1" ~ "Dry season precipitation (t + 1)",
-    clim_var == "prec_wet_t_1" ~ "Wet seasons precipitation (t + 1)"
+    clim_var == "prec_dry_t"   ~ "Dry season precipitation (t)",
+    clim_var == "prec_wet_t"   ~ "Wet season precipitation (t)",
+    clim_var == "prec_dry_t_1" ~ "Dry season precipitation (t - 1)",
+    clim_var == "prec_wet_t_1" ~ "Wet season precipitation (t - 1)"
   ), 
   clim_var = fct_relevel(as.factor(clim_var),
-                         c("Dry season temperature (t)",
-                           "Dry season precipitation (t)",
-                           "Wet seasons precipitation (t)",
-                           "Dry season temperature (t + 1)",
-                           "Dry season precipitation (t + 1)",
-                           "Wet seasons precipitation (t + 1)"
+                         c("Dry season precipitation (t)",
+                           "Wet season precipitation (t)",
+                           "Dry season precipitation (t - 1)",
+                           "Wet season precipitation (t - 1)"
                            )))
 
 ggplot(plt_dat,
@@ -335,7 +337,7 @@ ggplot(plt_dat,
 The random forest LTRE explained `r round(rf$rsq[751], 2) * 100`% of the variance in $\lambda$ across sites. Decomposing the contributions of each parameter showed that site specific random effects were the most important parameters in the model. Climate related vital rate parameters were of substantially lesser importance, but many were included in the top 20 most important parameters in the IPMs (Figure 4.3).
 
 
-```{r echo = FALSE, warning = FALSE, fig.cap = "**Figure 4.3**: Variable importance as determined by the random forest. .", fig.height = 8, fig.width = 10}
+```{r echo = FALSE, message = FALSE, warning = FALSE, fig.cap = "**Figure 4.3**: Variable importance as determined by the random forest. Climate-related parameters are orders of magnitude less important than site-specific random effects, indicating that unmeasured variation is explaining more variance in $\\lambda$.", fig.height = 8, fig.width = 10}
 
 
 imps <- rf$importance %>%
@@ -383,7 +385,13 @@ ggplot(filter(imps, var != "site")[1:20, ],
 
 ### Discussion
 
+Sites varied considerably in their population growth rates (Figure 4.2). Sites with lower dry season precipitation appeared to have higher $\lambda$ values, though this result is not statistically significant and does not yield robust support for our hypothesis. This result may not be surprising. Recent work has indicated that replication within _and_ across climate bands is important for detecting climate signals in demographic parameters (Compagnoni et al. _unpublished_). Our study design only yielded three sites that could serve as climate replicates of each other, while all other sites were spread across a considerable distance. This yielded a broad climate gradient, but also did not allow us to partition site specific variability and climate signal (because $n = 1$ for every level of climate in our data set). Future work investigating climate drivers of invasions should consider that environmental gradients alone are not sufficient for robust statistical inference - replication within climate bands matters as well.
 
+Much of the variation in $\lambda$ is explained by unmeasured variables. The LTRE results showing the random intercepts and slopes contributing the most to the variance in $\lambda$ (Figure 4.3). Many factors may contribute to a species success at local scales. For example, phylogenetic and functional distinctiveness may matter more than abiotic conditions when species are introduced to novel settings (Levin et al. 2020). Furthermore, _Carpobrotus_ was intentionally introduced in much of its invaded range, largely for ornamental purposes (Portela et al. 2022). These introductions usually entail human preference for desirable characteristics, such as heavy flower production, which are also desirable characteristics for an invader that escapes cultivation. Such anthropogenic selection may induce founder effects for more fit phenotypes than are present in its native range, allowing it to become more dominant (Mayr 1942). Subsequent hybridization between multiple introduced populations could yield super-hybrids (Novoa et al. _in prep_). 
+
+_Carpobrotus_ tends to be an early successional species in its native range, losing out to other Fynbos species as the ecosystem matures after fire (T. Masayiti, personal communication). However, the dense litter that forms under plants as they grow inhibits germination of native species and alters the soil geochemistry in the invaded range, which may delay or halt succession in habitats where native species are not adapted to the presence of _Carpobrotus_ (Santoro *et al.* 2011, Novoa *et al.* 2013, Compoy *et al.* 2018). An alteration of the successional trajectory of the ecosystem and the associated competitive release that comes with that could easily mask the smaller effect of climate on overall fitness.
+
+In general, concerns that climate change may favor invasive species over native ones are not well supported by this work. Climate is not found to be a strong predictor of demographic success for _Carpobrotus_, and other work suggests that anthropogenic factors are stronger predictors of invasion spread than ecological ones (Wohlwend et al. 2021). While climate change may open up new areas to invasion, long distance dispersal events are still required for a species to realize this new niche space. In the Anthropocene era, these dispersal events are far more likely to occur due to economic factors than demographic ones, as evidenced by the fact that initial introductions of _Carpobrotus_ were almost exclusively intentional throughout the invaded range. It is therefore more important to focus on limiting trade of these species to curtail spread at the macroecological scale.
 
 ### Citations
 
@@ -399,4 +407,8 @@ ggplot(filter(imps, var != "site")[1:20, ],
   Manipulation. R package version 1.0.7. https://CRAN.R-project.org/package=dplyr
 
 2. Zizka, A., Silvestro, D., Andermann, T., Azevedo, J., Duarte Ritter, C., Edler, D., _et al._ (2019). “CoordinateCleaner: standardized cleaning of occurrence records from biological collection databases.” Methods in Ecology and Evolution 10. DOI: 10.1111/2041-210X.13152 (URL: https://doi.org/10.1111/2041-210X.13152), R package version 2.0-20
+
+6. Portela, R., Barreiro, R., Alpert, P., Xu, C-Y., Webber, B.L., & Roiloa, S.R. (2022). Comparative invasion ecology of _Carpobrotus_ from four continents: responses to nutrients and competition. Jourcnal of Plant Ecology, _in press_. https://doi.org/10.1093/jpe/rtac034
+
+7. Wohlwend, M.R., Craven, D., Weigelt, P., Seebens, H., Winter, M., Kreft, H., _et al_. (2021). Anthropogenic and environmental drivers shape diversity of naturalized plants across the Pacific. Diversity and Distributions. https://doi.org/10.1111/ddi.13260
 
