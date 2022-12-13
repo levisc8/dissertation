@@ -1,4 +1,22 @@
 \newpage
 # Chapter 2: Flexible implementation of Integral Projection Models in R
 
+Authors:
+
+Sam C. Levin
+
+Sanne Evers
+
+Tomos Potter
+
+Mayra Pena-Guerrero
+
+Dylan Z. Childs
+
+Aldo Compagnoni
+
+Tiffany M. Knight
+
+Roberto Salguero-Gomez
+
 \includepdf[pages = -, nup = 1, pagecommand = {}]{rmd/published/ipmr.pdf}

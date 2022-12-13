@@ -2,4 +2,22 @@
 
 # Chapter 3: Rpadrino: an R package to access and use PADRINO, an open access database of Integral Projection Models
 
+Authors:
+
+Sam C. Levin
+
+Sanne Evers
+
+Tomos Potter
+
+Mayra Pena-Guerrero
+
+Dylan Z. Childs
+
+Aldo Compagnoni
+
+Tiffany M. Knight
+
+Roberto Salguero-Gomez
+
 \includepdf[pages = -, nup = 1, pagecommand = {}]{rmd/published/rpdb-pdb.pdf}

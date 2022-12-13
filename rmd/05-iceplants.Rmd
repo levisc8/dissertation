@@ -1,17 +1,12 @@
 # Chapter 4: Relationship between climate and fitness of a highly invasive succulent 
 
-Sam C. Levin $^{\ast1,2,3}$, Roberto Salguero-Gómez $^{3\ddagger}$, Tiffany M. Knight $^{1,2,4\ddagger}$
+Authors:
 
-$^1$Institute of Biology, Martin Luther University Halle-Wittenberg, Am Kirchtor 1, 06108 Halle (Saale), Germany
+Sam C. Levin 
 
-$^2$German Centre for Integrative Biodiversity Research (iDiv) Halle-Jena-Leipzig, Deutscher Platz 5e, 04103 Leipzig, Germany
+Roberto Salguero-Gómez 
 
-$^3$Department of Zoology, 11a Mansfield Rd, University of Oxford, Oxford, OX1 3SZ, UK
-
-$^4$Department of Community Ecology, Helmholtz Centre for Environmental Research-UFZ, Theodor-Lieser-Straße 4, 06120, Halle (Saale), Germany
-
-$^\ddagger$ Joint senior authors
-
+Tiffany M. Knight 
 
 ### Abstract
 

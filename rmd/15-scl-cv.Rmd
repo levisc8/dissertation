@@ -1,0 +1,191 @@
+
+# CV, Products, and Author Contributions
+
+## B) CV
+
+### Education
+
+*Martin Luther University Halle-Wittenberg*
+
+PhD Biology \hfill 2018-Present
+
+*Martin Luther University Halle-Wittenberg*
+
+MSc Biology \hfill 2016-2017
+
+*Wake Forest University*
+
+BA Biology \hfill 2008-2012
+
+### Work Experience
+
+*Pivot Bio* 
+
+Data Scientist I \hfill 2022-Present
+
+*Martin Luther University Halle-Wittenberg*
+
+Research Officer \hfill 2018-Present
+
+*Helmholtz-Zentrum für Umweltforschung *
+
+Student Research Assistant \hfill 2017
+
+*German Centre for Integrative Biodiversity*
+
+Student Research Assistant \hfill 2016 - 2018
+
+*University of Missouri-St. Louis*
+
+Field Research Technician \hfill 2015 - 2016	
+	
+*Washington University in St. Louis*
+
+Field Research Technician \hfill 2014 - 2015
+
+*Student Conservation Association*
+
+National Park Service Southeast EPMT Intern \hfill 2013 - 2014
+
+### Publications
+
+#### Journal Articles
+$^\ast$ _denotes mentee_
+
+**Levin SC**, Evers S$^\ast$, Pena-Guerrero M, Compagnoni AC, Childs DZ, Knight TM & Salguero-Gomez R (2022). Rpadrino: an R package to access and use PADRINO, an open access database of Integral Projection Models. Methods in Ecology and Evolution. DOI: 10.1111/2041-210X.13910
+
+Jones OR, Barks P, Stott I, James TD, **Levin SC**, Petry WK _et al._ (2022). Rcompadre and Rage—Two R packages to facilitate the use of the COMPADRE and COMADRE databases and calculation of life-history traits from matrix population models. Methods in Ecology and Evolution. DOI: 10.1111/2041-210X.13792
+
+**Levin SC**, Childs DZ, Compagnoni AC, Evers S$^\ast$, Knight TM & Salguero-Gomez R (2021). ipmr: Flexible implementation of Integral Projection Models in R. Methods in Ecology and Evolution. DOI: 10.1111/2041-210X.13683
+
+Keppel G, Craven D, Weigelt P, Smith SA, van der Sande MT, Sandel B, **Levin SC**, Kreft H & Knight TM (2021). Synthesizing tree biodiversity data to understand global patterns and processes of vegetation. Journal of Vegetation Science. DOI: 10.1111/jvs.13021
+
+Bogdan A$^\ast$, **Levin SC**, Salguero-Gomez R & Knight TM. (2021). Demographic analysis of an Israeli _Carpobrotus_ population. Plos One. DOI: 10.1371/journal.pone.0250879.
+
+Paniw M, James T, Archer CR, Romer G, **Levin SC**, Compagnoni AC, _et al._ (2021). Global analysis reveals complex demographic responses of mammals to climate change. Journal of Animal Ecology. DOI: 10.1111/1365-2656.13467
+
+Compagnoni AC, **Levin SC**, Childs DZ, Harpole S, Paniw M, Romer G, _et al._ (2021). Short-lived plants have stronger demographic responses to climate. Nature Communications. Nature Communications. DOI: 10.1038/s41467-021-21977-9
+
+**Levin SC**, Crandall RM, Pokoski TC$^\ast$, Stein C & Knight TM (2020). Phylogenetic and functional distinctiveness explain alien plant population responses to competition. Proceedings of the Royal Society B. DOI: 10.1098/rspb.2020.1070
+
+Sandel B, Weigelt P, Kreft H, Keppel G, van der Sande MT, **Levin SC**, Smith S, Craven DC & Knight TM (2019). Current climate, isolation, and history drive global patterns of tree phylogenetic endemism. Global Ecology and Biogeography. DOI: 10.1111/geb.13001
+
+Compagnoni A, Bibian BJ, Ochocki BM, **Levin SC**, Zhu K & Miller TEX (2019). popler: an R package for extraction and synthesis of population time series from the long-term ecological research (LTER) network. Methods in Ecology and Evolution. DOI: 10.1111/2041-210X.13319
+
+**Levin SC**, Crandall RM, Knight TM (2019) Population projection models for 14 alien plant species in the presence and absence of above‐ground competition. Ecology. DOI: 10.1002/ecy.2681 
+
+Carl G, **Levin SC**, Kühn I. (2018) spind: an R Package to Account for Spatial Autocorrelation in the Analysis of Lattice Data. Biodiversity Data Journal. DOI: 10.3897/BDJ.6.e20760
+
+#### Workshops & Invited Talks
+
+**Levin SC**, Childs DZ, Compagnoni AC, Evers S, Knight TM & Salguero-Gomez R. `ipmr`: An R Package for Easy and Flexible Construction and Interpretation of Integral Projection Models. Ecological Society of America, Long Beach, August 2021.
+
+**Levin SC**. Invasive plants: research, control, and what you can do to help! Point Reyes National Seashore, May 2020. (Cancelled due to COVID-19 pandemic).
+
+**Levin SC** & Salguero-Gomez R. Effective, efficient, and safe data collection with UAVs. Oxford University, January 2020.
+
+Salguero-Gomez R, Jones OR, _et al._ A  gentle introduction to the COMADRE & COMPADRE databases for demographic analyses. British Ecological Society, Belfast, December 2019.
+
+#### Presentations
+$^\ast$ _denotes mentee; $^\#$ denotes poster presentations, otherwise oral_
+
+**2020**
+
+Salguero-Gomez R,Che-Castaldo JP, Jones O, Caswell H, Ezard T, Hernandez-Yanez H, Hodgson D, Knight TM, **Levin SC**, Stott I, Thomas C, Vaupel J. (2020) The next generation of demographic databases: Building and delivering a distributed network for user contributions and engagement. Ecological Society of America
+
+**2018**
+
+**Levin SC**, RM Crandall, TC Pokoski, Stein C, Knight TM. Mechanisms underlying the differential success of alien plant species. Ecological Society of America – New Orleans, USA
+
+
+**2016**
+
+**Levin SC**, Stein C, Knight TM. Phylogenetic novelty alters the strength of biotic interactions for exotic plant species. NeoBiota 2016 – Vianden, Luxembourg
+
+**Levin SC**, Stein C, Knight TM. Phylogenetic novelty alters the strength of biotic interactions for exotic plant species. iDiv Conference – Leipzig, Germany
+
+
+**2015**
+
+Poor E$^\ast$,Thompson AH$^\ast$, **Levin SC**, Knight TM. Novel functional traits aid the success of the invasive biennial Carduus nutans. Washington University in St. Louis Undergraduate Research Symposium – St. Louis, MO $^\#$
+
+Workman M$^\ast$, Thompson AH$^\ast$, **Levin SC**, Knight TM. Competitive release may increase the fitness of exotic plants in their novel range. Washington University in St. Louis Undergraduate Research Symposium – St. Louis, MO $^\#$
+
+**2014**
+
+Patterson A$^\ast$, Galluppi CG, **Levin SC**, Maynard EE, Knight TM. How plant species become common: examining the success strategies of native and invasive plants. Washington University in St. Louis Undergraduate Research Symposium – St. Louis, MO $^\#$
+
+Van Horn T$^\ast$, Galluppi CG, **Levin SC**, Knight TM. Examining the enemy release hypothesis in Ozark woody species. Washington University in St. Louis Undergraduate Research Symposium – St. Louis, MO $^\#$
+
+### Software
+
+Maintainer (current) and developer (> v2.0.0) of *spind*. [Project page](https://github.com/levisc8/spind) and  [CRAN](https://cran.r-project.org/package=spind).
+
+Maintainer and developer of *ipmr*. [Project page](https://padrinoDB.github.io/ipmr/) and [CRAN](https://cran.r-project.org/package=ipmr).
+
+Maintainer and developer of the *PADRINO IPM Database* and *Rpadrino*. [PADRINO page](https://padrinoDB.github.io/Padrino/) and [RPadrino page](https://padrinoDB.github.io/RPadrino/).
+
+Contributed to development of [popler](https://github.com/ropensci/popler), [bRacatus](https://github.com/EduardoArle/bRacatus), [taxlist](https://github.com/ropensci/taxlist),  [plotbiomes](https://github.com/valentinitnelav/plotbiomes), [popdemo](https://github.com/iainmstott/popdemo), [Rcompadre](https://github.com/jonesor/Rcompadre),
+and [Rage](https://github.com/jonesor/Rage).
+
+### Languages
+
+Fluent in English and R, proficient with Stan, Git, shell, and C++, and familiar with Python and German.
+
+### Certifications
+
+United States FAA Part 107 UAV Pilot License
+
+United States NPS S212 A Faller
+
+### Mentoring
+
+Sanne Evers \hfill Helmholtz-Zentrum für Umweltforschung 
+
+Ana Bogdan \hfill Babe\c s-Bolyai University, Cluj-Napoca, Romania
+
+Tyler Pokoski \hfill  University of Iowa 2017
+
+Tom Collins \hfill Missouri S&T 2017
+
+Amy Patterson \hfill Washington University in St. Louis 2015
+
+Amibeth Thompson \hfill Illinois College 2014
+
+Sami Hunkler \hfill University of California, Berkeley 2017
+
+Thomas Van Horn \hfill Washington University in St. Louis 2018
+
+Sarah Link \hfill Eureka High School 2015
+
+Brenda Alvarado \hfill Francis Howell North 2015
+
+Matilda Workman \hfill Kirkwood High School 2017
+
+Elizabeth Poor \hfill Clayton High School 2017
+
+### Service
+
+Reviewer for rOpenSci, Functional Ecology, BMC Ecology, Annals of Botany, and Plant Ecology
+
+### C) List of publications
+
+**Levin SC**, Evers S, Pena-Guerrero M, Compagnoni AC, Childs DZ, Knight TM & Salguero-Gomez R (2022). Rpadrino: an R package to access and use PADRINO, an open access database of Integral Projection Models. Methods in Ecology and Evolution 13(9): 1923-1929.
+
+**Levin SC**, Childs DZ, Compagnoni AC, Evers S, Knight TM & Salguero-Gomez R (2021). ipmr: Flexible implementation of Integral Projection Models in R. Methods in Ecology and Evolution 12(10): 1826-1834. 
+
+### Conference participation and invited talks
+
+**Levin SC**, Childs DZ, Compagnoni AC, Evers S, Knight TM & Salguero-Gomez R. `ipmr`: An R Package for Easy and Flexible Construction and Interpretation of Integral Projection Models. Ecological Society of America, Long Beach, August 2021.
+
+Salguero-Gomez R,Che-Castaldo JP, Jones O, Caswell H, Ezard T, Hernandez-Yanez H, Hodgson D, Knight TM, **Levin SC**, Stott I, Thomas C, Vaupel J. (2020) The next generation of demographic databases: Building and delivering a distributed network for user contributions and engagement. Ecological Society of America
+
+**Levin SC** & Salguero-Gomez R. Effective, efficient, and safe data collection with UAVs. Oxford University, January 2020.
+
+Salguero-Gomez R, Jones OR, _et al._ A  gentle introduction to the COMADRE & COMPADRE databases for demographic analyses. British Ecological Society, Belfast, December 2019.
+
+### D) Author contributions
+
+Chapter 2: Levin SC, Childs DZ, Compagnoni AC, Evers S, Knight TM & Salguero-Gomez R (2021). ipmr: Flexible implementation of Integral Projection Models in R. Methods in Ecology and Evolution 12(10): 1826-1834. Design: Sam Levin (70%), Dylan Childs (15%), Tiffany Knight(5%), Roberto Salguero-Gomez (10%). Implementation: Sam Levin (100%). Analysis: Sam Levin (100%). Writing: Sam Levin (60%), Dylan Childs (10%), Aldo Compagnoni (5%), Sanne Evers (5%), Tiffany Knight (10%), Roberto Salguero-Gomez (10%).
+
+Chapter 3: Levin SC, Evers S, Pena-Guerrero M, Compagnoni AC, Childs DZ, Knight TM & Salguero-Gomez R (2022). Rpadrino: an R package to access and use PADRINO, an open access database of Integral Projection Models. Methods in Ecology and Evolution 13(9): 1923-1929. Data Collection: Sam Levin (5%), Sanne Evers (70%), Mayra Pena-Guerrero (5%), Tomos Potter (20%). Implementation: Sam Levin (100%). Analysis: Sam Levin (100%).  Writing: Sam Levin (60%), Dylan Childs (10%), Aldo Compagnoni (5%), Sanne Evers (5%), Tiffany Knight (10%), Roberto Salguero-Gomez (10%).
