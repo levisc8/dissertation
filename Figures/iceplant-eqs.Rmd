@@ -5,7 +5,9 @@ header-includes:
   - \usepackage{pdflscape}
   - \newcommand{\blandscape}{\begin{landscape}}
   - \newcommand{\elandscape}{\end{landscape}}
+  - \usepackage{pdfpages}
 ---
+
 \pagenumbering{gobble}
 
 # Appendix 7: Supplementary Information for Chapter 4
@@ -14,7 +16,7 @@ header-includes:
 
 The following diagram describes a single iteration of the IPM.
 
-\includepdf[pages = -, nup = 1, pagecommand = {}]{Figures/time_step_diagram.pdf}
+\includepdf[pages = -, nup = 1, pagecommand = {}]{../Figures/time_step_diagram.pdf}
 
 See the next section for a complete description of each vital rate parameter.
 
@@ -43,7 +45,7 @@ The survival probability of non-seedlings function, $s_a(z, \theta)$, is given b
 \[\beta_{s, \theta_t \times z, dry} * \theta_{t, dry, i} * z + \beta_{s, \theta_t \times z, wet} * \theta_{t, wet, i} * z + \]
 \[\beta_{s, \theta_p \times z, dry} * \theta_{p, dry, i} * z + \beta_{s, \theta_p \times z, wet} * \theta_{p, wet, i} * z + \]
 \[\beta_{s, \theta_{s3} \times z, dry} * \theta_{s3, dry, i} * z + \beta_{s, \theta_{s3} \times z, wet} * \theta_{s3, wet, i} * z + \] 
-\[\beta_{s, native} * g(i) + \beta_{s, i}]
+\[\beta_{s, native} * g(i) + \beta_{s, i}, \]
 
 ```
 
@@ -63,7 +65,7 @@ where $f_G$ denotes a normal probability density function, $\mu_G(z,\theta)$ is 
 \[\beta_{G, \theta_t \times z, dry} * \theta_{t, dry, i} * z + \beta_{G, \theta_t \times z, wet} * \theta_{t, wet, i} * z + \]
 \[\beta_{G, \theta_p \times z, dry} * \theta_{p, dry, i} * z + \beta_{G, \theta_p \times z, wet} * \theta_{p, wet, i} * z + \]
 \[\beta_{G, \theta_{s3} \times z, dry} * \theta_{s3, dry, i} * z + \beta_{G, \theta_{s3} \times z, wet} * \theta_{s3, wet, i} * z,\]
-\[\beta_{G, native} * g(i) + \beta_{G, i}]
+\[\beta_{G, native} * g(i) + \beta_{G, i}, \]
 ```
 
 $\sigma_G(z, i)$ is given by:
@@ -73,7 +75,7 @@ $\sigma_G(z, i)$ is given by:
 \[\beta_{\sigma_G, \theta_t, dry} * \theta_{t, dry, i} + \beta_{\sigma_G, \theta_t, wet} * \theta_{t, wet, i} + \]
 \[\beta_{\sigma_G, \theta_p, dry} * \theta_{p, dry, i} + \beta_{\sigma_G, \theta_p, wet} * \theta_{p, wet, i} + \]
 \[\beta_{\sigma_G, \theta_{s3}, dry} * \theta_{s3, dry, i} + \beta_{\sigma_G, \theta_{s3}, wet} * \theta_{s3, wet, i} + \]
-\[\beta_{\sigma_G, native} * g(i) + \beta_{\sigma_G, i}]
+\[\beta_{\sigma_G, native} * g(i) + \beta_{\sigma_G, i}, \]
 
 ```
 
@@ -88,7 +90,7 @@ The probability of flowering function, $p_f(z,\theta)$, is given by:
 \[\beta_{p_f, \theta_t \times z, dry} * \theta_{t, dry, i} * z + \beta_{p_f, \theta_t \times z, wet} * \theta_{t, wet, i} * z + \]
 \[\beta_{p_f, \theta_p \times z, dry} * \theta_{p, dry, i} * z + \beta_{p_f, \theta_p \times z, wet} * \theta_{p, wet, i} * z + \]
 \[\beta_{p_f, \theta_{s1} \times z, dry} * \theta_{s1, dry, i} * z + \beta_{p_f, \theta_{s1} \times z, wet} * \theta_{s1, wet, i} * z,\]
-\[\beta_{p_f, native} * g(i) + \beta_{p_f, native \times z} * g(i) * z + \beta_{p_f, i}]
+\[\beta_{p_f, native} * g(i) + \beta_{p_f, native \times z} * g(i) * z + \beta_{p_f, i}, \]
 
 ```
 
@@ -117,10 +119,10 @@ where $f_{r_a}$ is a Gaussian probability density function.
 
 ```{r echo = FALSE, message = FALSE, warning = FALSE}
 
-all_surv_mods <- readRDS("Data/ramet_survival_list_krig.rds")
-all_flow_mods <- readRDS("Data/ramet_flower_n_list_lin_slope_ran.rds")
-all_grow_mods <- readRDS("Data/ramet_growth_list_krig.rds")
-all_repr_mods <- readRDS("Data/ramet_repro_list_krig.rds")
+all_surv_mods <- readRDS("../Data/ramet_survival_list_krig.rds")
+all_flow_mods <- readRDS("../Data/ramet_flower_n_list_lin_slope_ran.rds")
+all_grow_mods <- readRDS("../Data/ramet_growth_list_krig.rds")
+all_repr_mods <- readRDS("../Data/ramet_repro_list_krig.rds")
 
 
 surv_mod <- all_surv_mods[[1]][["times_sw3_seas"]]
@@ -128,7 +130,7 @@ flow_mod <- all_flow_mods[[1]][["times_sw3_seas"]]
 grow_mod <- all_grow_mods[[1]][["times_sw3_seas"]]
 repr_mod <- all_repr_mods[[1]][["times_sw1_seas"]]
 
-recr_mod <- readRDS("Data/recr_size_brm.rds")
+recr_mod <- readRDS("../Data/recr_size_brm.rds")
 
 
 ```
@@ -181,14 +183,13 @@ summary(recr_mod)
 
 # Sensitivity of site-level $\lambda$s to simulated parameter values
 
-We could not find parameter values for establishment probability ($p_e$) or seedbank survival rate ($s_{sb}$). Therefore, we simulated a range of values  from 0-1 for each (incrementing by 0.05), re-building the model, and then computing $\lambda$. The results are reported here.
+We could not find parameter values for establishment probability ($p_e$) or seedbank survival rate ($s_{sb}$). Therefore, we simulated a range of values  from 0-1 for each (incrementing by 0.05), re-building the model, and then computing $\lambda$. The results are reported here. Dotted, red vertical lines how the parameter value we used in the results reported in the main text.
 
 ## $p_e$
 
-\includepdf[pages = -, nup = 1, pagecommand = {}]{Figures/p_e_sensitivity_plot_prob_resamp.pdf}
-\newpage
+\includepdf[pages = -, nup = 1, pagecommand = {}]{../Figures/p_e_sensitivity_plot_prob_resamp.pdf}
 
 ## $s_{sb}$
 
-\includepdf[pages = -, nup = 1, pagecommand = {}]{Figures/s_sb_sensitivity_plot_prob_resamp.pdf}
+\includepdf[pages = -, nup = 1, pagecommand = {}]{../Figures/s_sb_sensitivity_plot_prob_resamp.pdf}
 
