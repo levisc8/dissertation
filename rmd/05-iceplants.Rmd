@@ -17,7 +17,7 @@ $^\ddagger$ Joint senior authors
 
 Invasive species pose a substantial threat to biodiversity, and Mediterranean dunes are especially threatened by them. In conjunction with this threat, climate change imposes further pressures on these ecosystems. Robust management policies to mitigate these threats requires detailed information on how climate is expected to alter the fitness of invaders so that management efforts can be targeted to maximize desirable outcomes. _Carpobrotus_ species are a widely distributed invasive species, making them ideal for studying how climate affects fitness. We developed a novel, drone based method of collecting demographic data for 13 sites distributed across the native and invaded ranges, and used this data to parameterize Integral Projection Models to estimate fitness as a function of climate variables. A life table response experiment on these models indicates that climate is not a strong driver of fitness.
 
-```{r echo = FALSE, message = FALSE, warning = FALSE, eval = TRUE}
+```{r echo = FALSE, message = FALSE, warning = FALSE, eval = FALSE}
 
 # Remove this block to compile complete dissertation.
 library(dplyr)
@@ -36,28 +36,28 @@ library(sf)
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE}
 
-rams <- readRDS("../Data/all_ramets_di.rds")
-t_2_out <- read.csv("../Data/t_2_omissions.csv",
+rams <- readRDS("Data/all_ramets_di.rds")
+t_2_out <- read.csv("Data/t_2_omissions.csv",
                     stringsAsFactors = FALSE) %>%
   setNames(c("site", "id"))
 
 rams_t_2 <- anti_join(rams, t_2_out, by = c("site", "id"))
 
-grow_mod <- readRDS("../Data/ramet_growth_list_krig.rds")[[1]][["times_sw3_seas"]]
+grow_mod <- readRDS("Data/ramet_growth_list_krig.rds")[[1]][["times_sw3_seas"]]
 grow_dat <- grow_mod$data
 
-surv_mod <- readRDS("../Data/ramet_survival_list_krig.rds")[[1]][["times_sw3_seas"]]
+surv_mod <- readRDS("Data/ramet_survival_list_krig.rds")[[1]][["times_sw3_seas"]]
 surv_dat <- surv_mod$data
 
-repr_mod <- readRDS("../Data/ramet_repro_list_krig.rds")[[1]][["times_sw1_seas"]]
+repr_mod <- readRDS("Data/ramet_repro_list_krig.rds")[[1]][["times_sw1_seas"]]
 repr_dat <- repr_mod$data
 
-flow_mod <- readRDS("../Data/ramet_flower_n_list_lin_slope_ran.rds")[[1]][["times_sw3_seas"]]
+flow_mod <- readRDS("Data/ramet_flower_n_list_lin_slope_ran.rds")[[1]][["times_sw3_seas"]]
 flow_dat <- flow_mod$data
 
-rf <- readRDS("../Data/all_site_rf_ltre_with_site_term.rds")
-clim <- read.csv("../Data/site_climate_values.csv")
-lams <- read.csv("../Data/lin_mod_general_ipm_site_lambdas_prob_resamp.csv")
+rf <- readRDS("Data/all_site_rf_ltre_with_site_term.rds")
+clim <- read.csv("Data/site_climate_values.csv")
+lams <- read.csv("Data/lin_mod_general_ipm_site_lambdas_prob_resamp.csv")
 
 
 ```
@@ -91,7 +91,7 @@ ipm_sites <- c("Struisbaai", "St_Francis", "Melkboss", "Vogelgat",
                "Rarangi", "Foxton", "Whirinaki", "Havatselet",
                "Praia_de_Areao", "Colares")
 
-sites <- read.csv("../Data/drone_flight_metadata.csv",
+sites <- read.csv("Data/drone_flight_metadata.csv",
                   stringsAsFactors = FALSE) %>%
   filter(population %in% ipm_sites)
 
@@ -122,9 +122,9 @@ kable(sites,
 ```{r echo = FALSE, message = FALSE, warning = FALSE, fig.cap = "**Figure 4.1**:  Geographic distribution of all sites used for climate envelope calculations (in black) and all sites used for demographic modeling (in red). Insets show locations within each region."}
 
 
-wrld <- st_read("../Data/World_Continents/continents.shp", quiet = TRUE) 
+wrld <- st_read("Data/World_Continents/continents.shp", quiet = TRUE) 
 
-all_clim_sites <- read.csv("../Data/all_gbif_field_sites.csv",
+all_clim_sites <- read.csv("Data/all_gbif_field_sites.csv",
                            stringsAsFactors = FALSE)  %>%
   filter(site %in% ipm_sites | is.na(site)) %>%
   mutate(sampled_for_demography = case_when(

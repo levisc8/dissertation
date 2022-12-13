@@ -126,7 +126,7 @@ ann_pubs <- ggplot(all_pubs,
   theme(legend.position = "none",
         axis.title = element_text(size = 18),
         axis.text =  element_text(size = 16),
-        plot.margin = margin(b = 30, l = 0, r = 2)
+        plot.margin = ggplot2::margin(b = 30, l = 0, r = 2)
         ) +
   ylab("Number per Year") + 
   annotation_custom(grob = textGrob(label = "IPMpack Introduced",
