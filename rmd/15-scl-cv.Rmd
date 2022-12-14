@@ -168,13 +168,13 @@ Elizabeth Poor \hfill Clayton High School 2017
 
 Reviewer for rOpenSci, Functional Ecology, BMC Ecology, Annals of Botany, and Plant Ecology
 
-### C) List of publications
+## List of publications for the dissertation
 
 **Levin SC**, Evers S, Pena-Guerrero M, Compagnoni AC, Childs DZ, Knight TM & Salguero-Gomez R (2022). Rpadrino: an R package to access and use PADRINO, an open access database of Integral Projection Models. Methods in Ecology and Evolution 13(9): 1923-1929.
 
 **Levin SC**, Childs DZ, Compagnoni AC, Evers S, Knight TM & Salguero-Gomez R (2021). ipmr: Flexible implementation of Integral Projection Models in R. Methods in Ecology and Evolution 12(10): 1826-1834. 
 
-### Conference participation and invited talks
+## Conference participation and invited talks
 
 **Levin SC**, Childs DZ, Compagnoni AC, Evers S, Knight TM & Salguero-Gomez R. `ipmr`: An R Package for Easy and Flexible Construction and Interpretation of Integral Projection Models. Ecological Society of America, Long Beach, August 2021.
 
@@ -184,8 +184,26 @@ Salguero-Gomez R,Che-Castaldo JP, Jones O, Caswell H, Ezard T, Hernandez-Yanez H
 
 Salguero-Gomez R, Jones OR, _et al._ A  gentle introduction to the COMADRE & COMPADRE databases for demographic analyses. British Ecological Society, Belfast, December 2019.
 
-### D) Author contributions
+### C) Author contributions
 
 Chapter 2: Levin SC, Childs DZ, Compagnoni AC, Evers S, Knight TM & Salguero-Gomez R (2021). ipmr: Flexible implementation of Integral Projection Models in R. Methods in Ecology and Evolution 12(10): 1826-1834. Design: Sam Levin (70%), Dylan Childs (15%), Tiffany Knight(5%), Roberto Salguero-Gomez (10%). Implementation: Sam Levin (100%). Analysis: Sam Levin (100%). Writing: Sam Levin (60%), Dylan Childs (10%), Aldo Compagnoni (5%), Sanne Evers (5%), Tiffany Knight (10%), Roberto Salguero-Gomez (10%).
 
 Chapter 3: Levin SC, Evers S, Pena-Guerrero M, Compagnoni AC, Childs DZ, Knight TM & Salguero-Gomez R (2022). Rpadrino: an R package to access and use PADRINO, an open access database of Integral Projection Models. Methods in Ecology and Evolution 13(9): 1923-1929. Data Collection: Sam Levin (5%), Sanne Evers (70%), Mayra Pena-Guerrero (5%), Tomos Potter (20%). Implementation: Sam Levin (100%). Analysis: Sam Levin (100%).  Writing: Sam Levin (60%), Dylan Childs (10%), Aldo Compagnoni (5%), Sanne Evers (5%), Tiffany Knight (10%), Roberto Salguero-Gomez (10%).
+
+
+## D) Eigenständigkeitserklärung
+
+Hiermit erkläre ich, dass die Arbeit mit dem Titel “Integral Projection Models Across Scales” bisher weder bei der Naturwissenschaftlichen
+Fakultät I Agrar und Ernährungswissenschaften, Geowissenschaften und Informatik der
+Martin-Luther-Universität Halle-Wittenberg noch einer anderen wissenschaftlichen
+Einrichtung zum Zweck der Promotion vorgelegt Wurde.
+
+Ferner erkläre ich, dass ich die vorliegende Arbeit selbstständig und ohne fremde Hilfe
+verfasst sowie keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe. Die
+den Werken wörtlich oder inhaltlich entnommenen Stellen wurden als solche von mir
+kenntlich gemacht. Ich erkläre weiterhin, dass ich mich bisher noch nie um einen Doktorgrad
+beworben habe.
+
+Halle (Saale), den `r format(Sys.Date(), '%d.%m.%Y')`
+
+Sam C. Levin
