@@ -45,3 +45,4 @@ Data/*.csv
 *.toc
 *.log
 *.docx
+admin_bs/*
