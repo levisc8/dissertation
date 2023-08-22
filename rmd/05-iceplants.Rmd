@@ -12,7 +12,7 @@ Tiffany M. Knight
 
 Invasive species pose a substantial threat to biodiversity, and Mediterranean dunes are especially threatened by them. In conjunction with biological invasions, climate change imposes further pressures on these ecosystems. In order to mitigate these threats, we need detailed information on how climate influences the fitness of invaders so that management efforts can be targeted to prevent future invasions and curb rapidly growing populations that are causing environmental harm. _Carpobrotus_ species are a widely distributed invasive species, making them ideal for studying how climate affects fitness. We developed a novel, drone based method of collecting demographic data for 13 sites distributed across the native and invaded ranges, and used this data to parameterize Integral Projection Models to estimate fitness as a function of climate variables. A life table response experiment on these models indicates that climate is not a strong driver of fitness.
 
-```{r echo = FALSE, message = FALSE, warning = FALSE, eval = FALSE}
+```{r echo = FALSE, message = FALSE, warning = FALSE, eval = TRUE}
 
 # Remove this block to compile complete dissertation.
 library(dplyr)
@@ -31,45 +31,45 @@ library(sf)
 
 ```{r echo = FALSE, warning = FALSE, message = FALSE}
 
-rams <- readRDS("Data/all_ramets_di.rds")
-t_2_out <- read.csv("Data/t_2_omissions.csv",
+rams <- readRDS("../Data/all_ramets_di.rds")
+t_2_out <- read.csv("../Data/t_2_omissions.csv",
                     stringsAsFactors = FALSE) %>%
   setNames(c("site", "id"))
 
 rams_t_2 <- anti_join(rams, t_2_out, by = c("site", "id"))
 
-grow_mod <- readRDS("Data/ramet_growth_list_krig.rds")[[1]][["times_sw3_seas"]]
+grow_mod <- readRDS("../Data/ramet_growth_list_krig.rds")[[1]][["times_sw3_seas"]]
 grow_dat <- grow_mod$data
 
-surv_mod <- readRDS("Data/ramet_survival_list_krig.rds")[[1]][["times_sw3_seas"]]
+surv_mod <- readRDS("../Data/ramet_survival_list_krig.rds")[[1]][["times_sw3_seas"]]
 surv_dat <- surv_mod$data
 
-repr_mod <- readRDS("Data/ramet_repro_list_krig.rds")[[1]][["times_sw1_seas"]]
+repr_mod <- readRDS("../Data/ramet_repro_list_krig.rds")[[1]][["times_sw1_seas"]]
 repr_dat <- repr_mod$data
 
-flow_mod <- readRDS("Data/ramet_flower_n_list_lin_slope_ran.rds")[[1]][["times_sw3_seas"]]
+flow_mod <- readRDS("../Data/ramet_flower_n_list_lin_slope_ran.rds")[[1]][["times_sw3_seas"]]
 flow_dat <- flow_mod$data
 
-rf <- readRDS("Data/all_site_rf_ltre_with_site_term.rds")
-clim <- read.csv("Data/site_climate_values.csv")
-lams <- read.csv("Data/lin_mod_general_ipm_site_lambdas_prob_resamp.csv")
+rf <- readRDS("../Data/all_site_rf_ltre_with_site_term.rds")
+clim <- read.csv("../Data/site_climate_values.csv")
+lams <- read.csv("../Data/lin_mod_general_ipm_site_lambdas_prob_resamp.csv")
 
 
 ```
 
 ### Introduction
 
-Invasive species are ecological and economic pests at local, regional, and global scales (Pimentel et al. 2005, Vila et al. 2011, Levin et al. 2020). There is an extensive body of work devoted to understanding how invasive species become invasive (reviewed in Lowry et al. 2013 and Jeschke & Heger 2018). However, generalization across families, genera, and even species remains difficult as environmental contexts can vary greatly across the invaded range, and population level processes (e.g. founder effects, rapid evolution, or hybridization) can induce rapid change in the invading population (reviewed in Prentis _et al._ 2008). The environmental context is receiving increasing attention, as there is growing recognition that climate change may favor invasive populations and produce an even greater threat to ecosystems.
+Invasive species are ecological pests at local, regional, and global scales (Pimentel et al. 2005, Vila et al. 2011, Levin et al. 2020). There is an extensive body of work devoted to understanding how species become invasive (reviewed in Lowry et al. 2013 and Jeschke & Heger 2018). However, generalization across families, genera, and even species remains challenging as environmental contexts can vary greatly across the invaded range, and population level processes (e.g. founder effects, rapid evolution, or hybridization) can induce rapid change in the invading population (reviewed in Prentis _et al._ 2008). The environmental context of invasive species is receiving increasing attention, as there is growing recognition that climate change may favor invasive populations and produce an even greater threat to ecosystems (Beaury et al. 2020, ).
 
-There is a growing body of literature illustrating the importance of the interaction between climate change and invasions. However, results so far are idiosyncratic, with climate change exacerbating some invasions and hindering others. As a result, there are still large gaps in our knowledge with respect to the impacts that invasive species might have in the short- and long-term futures for different focal invasive species and biomes.
+There is a growing body of literature illustrating the importance of the interaction between climate change and invasions. However, there are contrasting expectations for species that depend both on biome and the species in question. For example, Bradley and colleagues (2009) predicted that _Centauria solstitialis_ and various _Tamarix spp_ should undergo range expansion, while _Bromus tectorum_ should undergo range contraction. Similarly, Merow & colleagues (2017) found that _Allaria petiolata_ will likely experience range contraction, but _Berberis thumbergii_ will likely undergo range expansion under future climate conditions. Furthermore, using a species distribution modeling approach, Allen & Bradley (2016) found that invasive plant species richness would decline by ~7% by 2050. Despite the effort dedicated to studying this, there is no clear consensus on when climate change should cause range expansion or contraction. Furthermore, there are substantial gaps left in our knowledge of how the many facets of climate change (e.g. increased temperature, variance in precipitation, $CO_2$ enrichment) will affect various species and biomes (reviewed in Ziska 2022).
 
-Given the joint issues posed by climate change and invasions, there have been recent efforts aimed at understanding how they might interact. Species distribution models (SDMs) are often applied to this problem, as they make use of readily available occurrence data to estimate species' ranges as a function of environmental covariates (Guisan & Thullier 2005). However, SDMs have also been criticized for certain applications, as they are often unable to predict occurrences in environments that fall outside the climate envelope of the observed range (reviewed in Liu et al. 2020). Classical SDMs make use of presence data or presence-absence data for a species, and do not necessarily include information on spatial variation in population performance. One exception to this is the demographic distribution model, which link the environment to species performance and dispersal, and then project future occupancies based on these relationships (Merow et al. 2017, Garcia-Callejas et al. 2017). 
+Given the joint issues posed by climate change and invasions, there have been recent efforts aimed at understanding their interactions. Species distribution models (SDMs) are often applied to this problem, as they make use of species occurrence and environmental covariate data to estimate species' current and future ranges (Guisan & Thullier 2005, Bradley et al. 2009, Allen & Bradley 2020). However, SDMs have also been criticized for their application applications, as they are often unable to predict occurrences in environments that are not covered by the observed range of the species in question (Merow et al. 2017, reviewed in Liu et al. 2020 and in Lake et al. 2020). Classical SDMs make use of presence data or presence-absence data for a species, and do not necessarily include information on spatial variation in population performance. Furthermore, making predictions on invaded range occupancy and performance based solely on data from the native range is risky because of novel biotic interactions that may arise, and because this practice often involves extrapolating estimates beyond the observed range of environmental data (Broennimann & Guisan 2008). Finally, the assumption that species are at equilibrium with their environment and thus occupy all suitable areas is unlikely to be true when using data from the native range (Elith et al. 2010).
 
-In the context of invasions, there are issues that can arise with the SDM approach. Making predictions on invaded range occupancy and performance based solely on data from the native range is risky because of novel biotic interactions that may arise, and because this practice often involves extrapolating estimates beyond the observed range of environmental data (Broennimann & Guisan 2008). Furthermore, the assumption that species are at equilibrium with their environment and thus occupy all suitable areas is unlikely to be true when using data from the native range (Elith et al. 2010). One approach to handling these issues is to incorporate demographic data from both the native and invaded range, and sample broadly across environmental gradients (Merow et al. 2017, Briscoe et al. 2019). In the context of invasions, this may require sampling across multiple continents and combining data from multiple sources, which can be onerous both technically and fiscally. However, new methods of rapidly collecting demographic data, such as unmanned aerial vehicles (UAVs, drones) are reducing both of these burdens.
+One approach to handling these issues is to incorporate demographic data from both the native and invaded range, and sample broadly across environmental gradients (Merow et al. 2017, Briscoe et al. 2019). This approach explicitly links vital rates (e.g. survival, reproduction, and dispersal) to environmental conditions, allowing for a mechanistic approach to making performance projections (Briscoe et al. 2019). A drawback of this method is that it entails sampling populations on multiple continents and combining data from multiple sources, which is laborious and expensive. However, new methods of rapidly collecting demographic data, such as unmanned aerial vehicles (UAVs, drones) can reduce those burdens.Indeed, a number of authors have already used this technology to generate estimates of map populations of invasive species and estimate their fitness (Innangi et al. 2023, Bogdan et al. 2020, reviewed in Cavendar-Bares et al. 2022).
 
-Mediterranean biomes are threatened by both climate change and invasions (Klausmeyer & Shaw 2009). They are home to vast array of endemic plant and animal species. They are threatened by the _Carpobrotus_ genus (Aizoaceae), particularly _C. edulis_, _C. acinaciformis_, _C. chilensis_, and their hybrids, which are native to South Africa but have been introduced on six continents. These _Carpobrotus_ species are spreading, mat forming succulents that are exceptionally competitive for water and light (D'Antonio & Mahall 1991, Novoa et al. 2012, Campoy et al. 2018). There is a growing body of evidence indicating these species are allelopathic, with their dessicated litter acidifying the soil and preventing other species from germinating (Novoa et al. 2012, Novoa et al. 2014).
+Mediterranean biomes are threatened by both climate change and invasions (Klausmeyer & Shaw 2009). These biomes are home to vast array of endemic plant and animal species. The Mediterranean ecosystems are threatened by the _Carpobrotus_ genus (Aizoaceae), particularly _C. edulis_, _C. acinaciformis_, _C. chilensis_, and their hybrids, which are native to South Africa but have been introduced on six continents. These _Carpobrotus_ species are spreading, mat forming succulents that are exceptionally competitive for water and light (D'Antonio & Mahall 1991, Novoa et al. 2012, Campoy et al. 2018). There is a growing body of evidence indicating these species are allelopathic, with their dessicated litter acidifying the soil and preventing other species from germinating (Novoa et al. 2012, Novoa et al. 2014).
 
-Here, we apply novel demographic sampling methods to the _Carpobrotus_ genus across `r length(unique(rams$site))` sites spread throughout their native and invaded range. We expect that, given _Carpobrotus_'s ability to compete for water and because water is a limiting resource in Mediterranean biomes, _Carpobrotus_ populations will show higher per-capita growth rates in sites that receive less precipitation will show higher per-capita growth rates than sites receiving more precipitation. We use a combination of Integral Projection Models (IPMs), generalized additive models (GAMs), and a life table response experiment (LTRE) to test these hypotheses.
+Here, we apply novel demographic sampling methods to the _Carpobrotus_ genus across `r length(unique(rams$site))` sites spread throughout their native and invaded range. We use drones as a fast and cheap way of generating detailed maps of each population. We repeat sampling of populations across two years to estimate vital rates as a function of climate variation. Mediterranean ecosystems can experience strong water limitation, and _carpobrotus_ is exceptionally competitive for water resources (D'Antonio & Mahall 1991, Novoa et al. 2012, Campoy et al. 2018). We expect that this combination of factors will lead to reduced competition at water limited sites, because _Carpobrotus_ will exclude inferior competitors for this essential nutrient. Therefore, we expect that _Carpobrotus_ populations will have higher per-capita growth rates in environments that receive less precipitation. We use a combination of Integral Projection Models (IPMs), generalized additive models (GAMs), and a life table response experiment (LTRE) to test these hypotheses.
 
 ### Methods
 
@@ -86,7 +86,7 @@ ipm_sites <- c("Struisbaai", "St_Francis", "Melkboss", "Vogelgat",
                "Rarangi", "Foxton", "Whirinaki", "Havatselet",
                "Praia_de_Areao", "Colares")
 
-sites <- read.csv("Data/drone_flight_metadata.csv",
+sites <- read.csv("../Data/drone_flight_metadata.csv",
                   stringsAsFactors = FALSE) %>%
   filter(population %in% ipm_sites)
 
@@ -104,7 +104,7 @@ names(sites) <- gsub("_", " ", names(sites))
 
 names(sites) <- toTitleCase(names(sites))
 
-cap <- "Table 4.1: Population locations, sample dates, and sizes."
+cap <- "Table 4.1: Population locations, drone flight dates, and the number of unique ramets identified in orthomosaic generated from the first flight. "
 
 kable(sites,
        format = "simple",
@@ -114,12 +114,12 @@ kable(sites,
 
 ```
 
-```{r echo = FALSE, message = FALSE, warning = FALSE, fig.cap = "**Figure 4.1**:  Geographic distribution of all sites used for climate envelope calculations (in black) and all sites used for demographic modeling (in red). Insets show locations within each region."}
+```{r echo = FALSE, message = FALSE, warning = FALSE, fig.height = 8, fig.width = 10, fig.cap = "**Figure 4.1**:  Geographic distribution of all sites used for climate envelope calculations (in black) and all sites used for demographic modeling (in red). Insets show locations within each region."}
 
 
-wrld <- st_read("Data/World_Continents/continents.shp", quiet = TRUE) 
+wrld <- st_read("../Data/World_Continents/continents.shp", quiet = TRUE) 
 
-all_clim_sites <- read.csv("Data/all_gbif_field_sites.csv",
+all_clim_sites <- read.csv("../Data/all_gbif_field_sites.csv",
                            stringsAsFactors = FALSE)  %>%
   filter(site %in% ipm_sites | is.na(site)) %>%
   mutate(sampled_for_demography = case_when(
@@ -154,8 +154,8 @@ sa_map <- ggplot(wrld,
                   aes(group = CONTINENT)) +
   geom_sf(color = "grey50",
           fill = "antiquewhite") +
-  coord_sf(xlim = c(18, 25),
-           ylim = c(-38, -33)) +
+  coord_sf(xlim = c(15, 29),
+           ylim = c(-38, -30)) +
   geom_point(data = sa, 
              aes(x = lon, y = lat), 
              color = "red",
@@ -174,7 +174,7 @@ nz_map <- ggplot(wrld,
   geom_sf(color = "grey50",
           fill = "antiquewhite") +
   coord_sf(xlim = c(165, 180),
-           ylim = c(-45, -36)) +
+           ylim = c(-48, -36)) +
   geom_point(data = nz, 
              aes(x = lon, y = lat), 
              color = "red",
@@ -225,10 +225,10 @@ world_map +
                 bottom = -0.3, 
                 right = 0.25)  + 
   inset_element(sa_map, 
-                left = 0.375,
+                left = 0.3,
                 top = 0, 
                 bottom = -0.35, 
-                right = 0.625) +
+                right = 0.7) +
   inset_element(nz_map, 
                 left = 0.75,
                 top = 0,
@@ -457,3 +457,15 @@ Concerns that climate change may favor invasive species over native ones are not
 33. Klausmeyer, K.R. & Shaw. M.R. (2009). Climate Change, Habitat Loss, Protected Areas and the Climate Adaptation Potential of Species in Mediterranean Ecosystems Worldwide. PLoS ONE 4(7): e6392. https://doi.org/10.1371/journal.pone.0006392
 
 34. Ca$\mathrm{\tilde{n}}$o, L., Escarre, J., Fleck, I., Blanco-Moreno, J.M., & Sans, F.X. (2008). Increased fitness and plasticity of an invasive species in its introduced range: a study using *Senecio pterophorus*. Journal of Ecology 96: 468-476.
+
+35. Beaury, E.M., Fusco, E.J., Jackson, M.R. et al. Incorporating climate change into invasive species management: insights from managers. Biological Invasions 22, 233–252 (2020). https://doi.org/10.1007/s10530-019-02087-6
+
+36. Allen, J., & Bradley, B.A. (2016). Out of the weeds? Reduced plant invasion risk with climate change in the continental United States. Biological Conservation 203, 306-312. https://doi.org/10.1016/j.biocon.2016.09.015
+
+37. Ziska, L.H. (2022) Plant Invasions, Rising CO2, and Global Climate Change. Chapter in Global Plant Invasions. 71-87. https://link.springer.com/chapter/10.1007/978-3-030-89684-3_4
+
+38. Cavender-Bares, J., Schneider, F.D., Santos, M.J. et al. Integrating remote sensing with ecology and evolution to advance biodiversity conservation. Nature Ecology & Evolution. 6, 506–519 (2022). https://doi.org/10.1038/s41559-022-01702-5
+
+39. Lake, T.A., Runquist, R.D.B, & Moeller, D.A. (2020). Predicting range expansion of invasive species: Pitfalls and best practices for obtaining biologically realistic projections. Diversity and Distributions 26(12): 1767-1779. 
+
+40. Innangi, M., Marzialetti, F., Di Febbraro, M., Acosta, A.T.R., De Simone, W., Frate, L., Finizio, M., Perna, P.V., & Carranza, M.L. (2023). Coastal Dune Invaders: Integrative Mapping of Carpobrotus sp. pl. (Aizoaceae) Using UAVs. Remote Sensing. 15, 503. https://doi.org/10.3390/rs15020503
