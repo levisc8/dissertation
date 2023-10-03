@@ -1,3 +1,4 @@
+\newpage
 # Acknowledgements
 
 I could not, nor would not, have done this work alone.  I first want to thank my supervisors, Tiffany Knight and Roberto Salgeuro-Gomez. Your mentorship has been invaluable, and I cannot think of two more supportive advisors in academia. I also want to thank the members of the Knight Lab over the last 6 years. None of these ideas would have happened were it not for the unrelenting support, intellectual brilliance, and comic relief you provided. So thanks to Aldo Compagnoni, Sanne Evers, Neeraja Venkataraman, Valentin Stefan, Dylan Craven, Joanne Bennett, Leana Zoller, Neeraja Venkataraman, Elena Motivans, Martin Andrzejak, Amibeth Thompson, Demetra Rakosy, Lotte Korell, and Michael Wohlwend. Finally, I owe a debt to T. Michael Anderson and Miles Silman, who introduced me to ecological research, and encouraged me to continue with it after undergrad.

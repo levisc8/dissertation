@@ -1,5 +1,5 @@
 \newpage
-# Chapter 2: Flexible implementation of Integral Projection Models in R
+# Chapter 2: `ipmr`: Flexible implementation of Integral Projection Models in R
 
 Authors:
 
@@ -18,5 +18,9 @@ Aldo Compagnoni
 Tiffany M. Knight
 
 Roberto Salguero-Gomez
+
+*Published in* Methods in Ecology and Evolution 12(10): 1826-1834. 
+
+https://doi.org/10.1111/2041-210X.13683
 
 \includepdf[pages = -, nup = 1, pagecommand = {}]{rmd/published/ipmr.pdf}

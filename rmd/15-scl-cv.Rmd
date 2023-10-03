@@ -1,7 +1,18 @@
+# Appendix 8
 
-# Appendix 8 
+## Zusätzliches Information
 
+Supplementary materials for each chapter, including published manuscripts, are included in Appendices 1-7. Additionally, for published manuscripts (Chapters 2 & 3), supplementary materials, including R code and associated data, can be digitally downloaded from the respective journal’s website. Text and figures can be found on the attached CD.
+\newpage
 ## A) Curriculum Vitae
+
+Samuel C. Levin
+Nationality: \hfill United States of America
+Birthday: \hfill 23/01/1990
+Address: \hfill 900 North 9th Street, Apt 403, Philadelphia, PA, 19123, USA
+Phone: \hfill +1-215-908-1171
+email: \hfill <levisc8@gmail.com>
+
 
 ### Education
 
@@ -19,15 +30,15 @@ BA Biology \hfill 2008-2012
 
 ### Work Experience
 
-*Pivot Bio* 
+*Pivot Bio, Inc.* 
 
 Data Scientist I \hfill 2022-Present
 
 *Martin Luther University Halle-Wittenberg*
 
-Research Officer \hfill 2018-Present
+Research Officer \hfill 2018-2022
 
-*Helmholtz-Zentrum für Umweltforschung *
+*Helmholtz-Zentrum für Umweltforschung*
 
 Student Research Assistant \hfill 2017
 
@@ -168,6 +179,8 @@ Elizabeth Poor \hfill Clayton High School 2017
 
 Reviewer for rOpenSci, Functional Ecology, BMC Ecology, Annals of Botany, and Plant Ecology
 
+*Philadelphia, Pennsylvania, United States of America, den* `r format(Sys.Date(), '%d.%m.%Y')` \hfill Sam C. Levin
+
 ## B) List of publications for the dissertation
 
 **Levin SC**, Evers S, Pena-Guerrero M, Compagnoni AC, Childs DZ, Knight TM & Salguero-Gomez R (2022). Rpadrino: an R package to access and use PADRINO, an open access database of Integral Projection Models. Methods in Ecology and Evolution 13(9): 1923-1929.
@@ -184,25 +197,26 @@ Salguero-Gomez R,Che-Castaldo JP, Jones O, Caswell H, Ezard T, Hernandez-Yanez H
 
 Salguero-Gomez R, Jones OR, _et al._ A  gentle introduction to the COMADRE & COMPADRE databases for demographic analyses. British Ecological Society, Belfast, December 2019.
 
+\newpage
 ## C) Author contributions
 
 Chapter 2: Levin SC, Childs DZ, Compagnoni AC, Evers S, Knight TM & Salguero-Gomez R (2021). ipmr: Flexible implementation of Integral Projection Models in R. Methods in Ecology and Evolution 12(10): 1826-1834. Design: Sam Levin (70%), Dylan Childs (15%), Tiffany Knight(5%), Roberto Salguero-Gomez (10%). Implementation: Sam Levin (100%). Analysis: Sam Levin (100%). Writing: Sam Levin (60%), Dylan Childs (10%), Aldo Compagnoni (5%), Sanne Evers (5%), Tiffany Knight (10%), Roberto Salguero-Gomez (10%).
 
 Chapter 3: Levin SC, Evers S, Pena-Guerrero M, Compagnoni AC, Childs DZ, Knight TM & Salguero-Gomez R (2022). Rpadrino: an R package to access and use PADRINO, an open access database of Integral Projection Models. Methods in Ecology and Evolution 13(9): 1923-1929. Data Collection: Sam Levin (5%), Sanne Evers (70%), Mayra Pena-Guerrero (5%), Tomos Potter (20%). Implementation: Sam Levin (100%). Analysis: Sam Levin (100%).  Writing: Sam Levin (60%), Dylan Childs (10%), Aldo Compagnoni (5%), Sanne Evers (5%), Tiffany Knight (10%), Roberto Salguero-Gomez (10%).
 
+Chapter 4: Levin SC, Salguero-Gomez R & Knight TM (2023). Relationship between climate and fitness of a highly invasive succulent _unpublished_. Design: Sam Levin (70%), Tiffany Knight (20%), Roberto Salguero-Gomez (10%). Data collection: Sam Levin (100%). Analysis: Sam Levin (100%). Writing: Sam Levin (70%), Tiffany Knight (20%), Roberto Salguero-Gomez (10%).
+
+*Philadelphia, Pennsylvania, United States of America, den* `r format(Sys.Date(), '%d.%m.%Y')` \hfill Sam C. Levin
+\newpage
+
 ## D) Eigenständigkeitserklärung
 
-Hiermit erkläre ich, dass die Arbeit mit dem Titel “Integral Projection Models Across Scales” bisher weder bei der Naturwissenschaftlichen
-Fakultät I Agrar und Ernährungswissenschaften, Geowissenschaften und Informatik der
-Martin-Luther-Universität Halle-Wittenberg noch einer anderen wissenschaftlichen
-Einrichtung zum Zweck der Promotion vorgelegt Wurde.
+Hiermit erkläre ich, dass die vorliegende Arbeit mit dem Titel “Integral Projection Models Across Scales” bisher weder an der Naturwissenschaftlichen Fakultät I der Martin-Luther-Universität Halle-Wittenberg noch einer anderen wissenschaftlichen Einrichtung zum Zweck der Promotion vorgelegt wurde.
 
-Ferner erkläre ich, dass ich die vorliegende Arbeit selbstständig und ohne fremde Hilfe
-verfasst sowie keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe. Die
-den Werken wörtlich oder inhaltlich entnommenen Stellen wurden als solche von mir
-kenntlich gemacht. Ich erkläre weiterhin, dass ich mich bisher noch nie um einen Doktorgrad
-beworben habe.
+Ferner erkläre ich, dass ich die vorliegende Arbeit selbstständig und ohne unzulässige fremde Hilfe verfasst, sowie keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe. Die den Werken wörtlich oder inhaltlich entnommenen Stellen wurden als solche von mir kenntlich gemacht. Ich erkläre weiterhin, dass ich mich bisher noch nie um einen Doktorgrad beworben habe.
 
-Halle (Saale), den `r format(Sys.Date(), '%d.%m.%Y')`
+I hereby declare that the present work entitled "Integral Projection Models Across Scales" has not previously been submitted to the Faculty of Natural Sciences I of the Martin Luther University Halle-Wittenberg or to any other scientific institution for the purpose of a doctorate.
 
-Sam C. Levin
+Furthermore, I declare that I have written this thesis independently and without unauthorized outside help, and that I have not used any sources or aids other than those indicated. The passages taken verbatim or in terms of content from the works were marked as such by me. I further declare that I have never applied for a doctoral degree before.
+
+*Philadelphia, Pennsylvania, United States of America, den* `r format(Sys.Date(), '%d.%m.%Y')` \hfill Sam C. Levin

@@ -20,4 +20,8 @@ Tiffany M. Knight
 
 Roberto Salguero-Gomez
 
+*Published in* Methods in Ecology and Evolution 13(9): 1923-1929. 
+
+https://doi.org/10.1111/2041-210X.13910
+
 \includepdf[pages = -, nup = 1, pagecommand = {}]{rmd/published/rpdb-pdb.pdf}

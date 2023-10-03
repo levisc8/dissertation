@@ -21,22 +21,9 @@ geboren am 23.01.1990 in Philadelphia, PA, USA
 
 \ecenter
 
-Gutachter
-
-1. Professor Tiffany Knight (Martin Luther University Halle-Wittenberg, Helmholtz Center for Environmental Research, German Centre for Integrative Biodiversity)
-
-2. 
-                    
-3.              
-
-Datum der Verteidigung: `r format(Sys.Date(), '%d.%m.%Y')`
-
 
 \newpage
 \pagenumbering{arabic}
-
-**Copyright notice:** 
-**Chapters 2 and 3 have been published in international journals under the terms of the Creative Commons Attribution License which permits any use, distribution, and reproduction in any medium, provided the original authors and source are credited. For the other parts of this dissertation, reprint of the presented material requires the authors' permissions. Copyright is with the authors.**
 
 \newpage
 
@@ -45,3 +32,9 @@ Datum der Verteidigung: `r format(Sys.Date(), '%d.%m.%Y')`
 \tableofcontents
 
 ```
+
+\newpage
+
+
+**Copyright notice:** 
+**Chapters 2 and 3, and Appendices 1, 2, 3, 4, 5, and 6 have been published in international journals under the terms of the Creative Commons Attribution License which permits any use, distribution, and reproduction in any medium, provided the original authors and source are credited. For the other parts of this dissertation, reprint of the presented material requires the authors' permissions. Copyright is with the authors.**

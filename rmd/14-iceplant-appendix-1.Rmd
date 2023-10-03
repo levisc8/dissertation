@@ -1,3 +1,2 @@
-# Appendix 7: Supplementary Information for Chapter 4
 
 \includepdf[pages = -, nup = 1, pagecommand = {}]{rmd/published/iceplant-s1.pdf}
