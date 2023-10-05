@@ -21,8 +21,10 @@ geboren am 23.01.1990 in Philadelphia, PA, USA
 
 \ecenter
 
-
 \newpage
+
+\ 
+
 \pagenumbering{arabic}
 
 \newpage
